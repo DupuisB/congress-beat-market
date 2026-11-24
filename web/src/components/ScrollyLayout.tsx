@@ -1,11 +1,11 @@
 import { MotionConfig } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Scrollama, Step } from "react-scrollama";
-import type { StoryData } from "../schema/story";
 import { isAuditMode } from "../lib/audit";
+import type { StoryData } from "../schema/story";
 import { BREAKPOINTS } from "../styles/tokens";
+import { CongressViz } from "./CongressViz";
 import { Highlight } from "./Highlight";
-import { SmokeViz } from "./SmokeViz";
 
 interface ScrollyLayoutProps {
   story: StoryData;
@@ -86,11 +86,11 @@ export function ScrollyLayout({ story }: ScrollyLayoutProps) {
       >
         {/* Single responsive sticky stage: top 48dvh on mobile, right 100dvh split on desktop */}
         <div className="sticky top-0 z-20 h-[48dvh] w-full border-b border-[#DDD7CC] bg-[#FAF8F5] lg:h-[100dvh] lg:flex-1 lg:border-b-0 lg:border-l">
-          <SmokeViz story={story} activeStep={activeStep} isDesktop={isDesktop} />
+          <CongressViz story={story} activeStep={activeStep} isDesktop={isDesktop} />
         </div>
 
-        {/* Prose rail: full-width centered cards on mobile, 400px left column on desktop */}
-        <div className="relative z-10 w-full px-3 pt-6 pb-[36dvh] lg:w-[400px] lg:shrink-0 lg:px-8 lg:pt-[18dvh] lg:pb-[32dvh]">
+        {/* Prose rail: centered warm cards on mobile, 404px left column on desktop */}
+        <div className="relative z-10 w-full px-3 pt-5 pb-[36dvh] lg:w-[404px] lg:shrink-0 lg:px-8 lg:pt-[14dvh] lg:pb-[32dvh]">
           <Scrollama<number>
             key={isDesktop ? "desktop-scrollama" : "mobile-scrollama"}
             offset={isDesktop ? 0.5 : 0.72}
@@ -103,19 +103,19 @@ export function ScrollyLayout({ story }: ScrollyLayoutProps) {
                   <div
                     data-step-index={beat.index}
                     data-step-id={beat.id}
-                    className="flex min-h-[65dvh] items-center justify-center py-6 lg:min-h-[82dvh] lg:items-center lg:py-10"
+                    className="flex min-h-[65dvh] items-center justify-center py-5 lg:min-h-[82dvh] lg:items-center lg:py-10"
                   >
                     <article
                       className={`w-full max-w-[92vw] border px-5 py-5 transition-opacity duration-200 lg:max-w-none lg:border-0 lg:border-l-2 lg:bg-transparent lg:px-5 lg:py-2 ${
                         isActive
                           ? "border-[#171614]/25 bg-[#FAF8F5] opacity-100 lg:border-[#D94E2A]"
-                          : "border-[#DDD7CC] bg-[#F1EDE6]/85 opacity-75 lg:border-[#DDD7CC] lg:opacity-45"
+                          : "border-[#DDD7CC] bg-[#F1EDE6]/90 opacity-75 lg:border-[#DDD7CC] lg:opacity-40"
                       }`}
                     >
                       <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5C5852] tabular-nums">
                         {beat.kicker}
                       </p>
-                      <h2 className="mt-2 font-serif text-2xl leading-[1.2] font-semibold tracking-[-0.01em] text-[#171614]">
+                      <h2 className="mt-2 font-serif text-[23px] leading-[1.18] font-semibold tracking-[-0.015em] text-[#171614] lg:text-2xl">
                         {beat.headline}
                       </h2>
                       <p className="mt-3 max-w-[60ch] text-[15px] leading-[1.65] text-[#171614]/90">

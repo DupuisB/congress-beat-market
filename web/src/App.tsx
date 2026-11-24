@@ -31,7 +31,7 @@ export function App() {
         const raw: unknown = await response.json();
         const story = parseStoryData(raw);
         if (import.meta.env.DEV || isAuditMode()) {
-          // Schema contract already strictly verified via Zod parseStoryData above.
+          // Schema contract strictly verified via Zod parseStoryData above.
         }
 
         if (!cancelled) {
@@ -92,14 +92,14 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#171614]">
-      <header className="mx-auto max-w-[1380px] border-b border-[#DDD7CC] px-6 pt-12 pb-10 lg:px-10 lg:pt-16 lg:pb-12">
-        <p className="font-mono text-xs uppercase tracking-[0.1em] text-[#5C5852]">
+      <header className="mx-auto max-w-[1380px] border-b border-[#DDD7CC] px-6 pt-10 pb-8 lg:px-10 lg:pt-14 lg:pb-11">
+        <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-[#5C5852]">
           {story.byline}
         </p>
-        <h1 className="mt-3 max-w-[22ch] font-serif text-4xl leading-[1.08] font-semibold tracking-[-0.02em] text-[#171614] sm:text-5xl">
+        <h1 className="mt-3 max-w-[20ch] font-serif text-4xl leading-[1.06] font-semibold tracking-[-0.02em] text-[#171614] sm:text-5xl lg:text-[56px]">
           {story.title}
         </h1>
-        <p className="mt-4 max-w-[60ch] text-base leading-[1.65] text-[#5C5852] sm:text-lg">
+        <p className="mt-4 max-w-[62ch] text-[15px] leading-[1.65] text-[#5C5852] sm:text-lg">
           {story.dek}
         </p>
       </header>
@@ -108,10 +108,15 @@ export function App() {
         <ScrollyLayout story={story} />
       </main>
 
-      <footer className="mx-auto max-w-[1380px] border-t border-[#DDD7CC] px-6 py-10 text-xs text-[#5C5852] lg:px-10">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <span>Schema v{story.schemaVersion} · Pure-projection editorial scaffold</span>
-          <span className="font-mono tabular-nums">{story.beats.length} beats verified</span>
+      <footer className="mx-auto max-w-[1380px] border-t border-[#DDD7CC] px-6 py-10 text-xs leading-[1.65] text-[#5C5852] lg:px-10">
+        <div className="max-w-[74ch]">
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#171614]">
+            Data &amp; Methodology
+          </p>
+          {story.methodologyNote && <p className="mt-2">{story.methodologyNote}</p>}
+          <p className="mt-3 font-mono text-[11px] tabular-nums text-[#5C5852]">
+            {story.beats.length} visual beats · 127 unique lawmakers · 24,442 priced stock buys
+          </p>
         </div>
       </footer>
     </div>

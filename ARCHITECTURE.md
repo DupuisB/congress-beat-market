@@ -21,6 +21,8 @@ Live map of the Pudding visual essay factory: directories, data contracts, and v
 │   ├── pyproject.toml            # uv project config (pydantic, pillow, ruff, ty)
 │   └── src/
 │       ├── schema.py             # Pydantic models for story.json, story.schema.json, manifest.json
+│       ├── tournament.py         # Phase 0 real-data tournament evaluator
+│       ├── emit_congress_story.py # Reproducible 7-beat essay emitter (127 unique lawmakers)
 │       ├── emit_smoke.py         # 3-beat / 12-entity smoke fixture emitter
 │       └── stitch_contact_sheet.py # Pillow contact-sheet generator for desktop & mobile PNGs
 ├── web/                          # Vite + React + TypeScript + Tailwind — pure-projection renderer
@@ -39,7 +41,8 @@ Live map of the Pudding visual essay factory: directories, data contracts, and v
 │       ├── components/
 │       │   ├── Highlight.tsx     # Color-matched inline prose highlight span
 │       │   ├── ScrollyLayout.tsx # Responsive sticky stage + react-scrollama + 2px progress bar
-│       │   └── SmokeViz.tsx      # Pure-projection, ID-keyed SVG/Framer Motion smoke graphic
+│       │   ├── CongressViz.tsx   # Pure-projection, ID-keyed 7-beat editorial visualization
+│       │   └── SmokeViz.tsx      # Pure-projection smoke graphic (for --smoke verification)
 │       └── App.tsx               # Data loader, Zod validation, and editorial page shell
 └── audit/                        # Deterministic Tier A Playwright verifier
     ├── package.json

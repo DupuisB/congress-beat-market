@@ -32,7 +32,7 @@ Popular finance lore insists members of Congress routinely beat the stock market
 - **Visual Delta:** Zoomed distribution (-160% to +160%) with mean-shift bridge & top 3 set aside
 - **Copy:** Set aside just the top three performers (2.4% of our 127-member sample) and zoom into the remaining 124 lawmakers: the headline mean plunges from -3.7% to -14.0% — right beside the -12.4% median. Even high-profile winners like Nancy Pelosi (+93.4%) sit in a thin right-hand tail outweighed by dozens of steep laggards.
 - **Takeaway:** Dropping 3 of 127 lawmakers cuts the mean from -3.7% to -14.0% (-10.3 pp).
-- **Desktop Labels (4):** Pelosi +93%, Suozzi +144%, Mo Brooks -150%, Marshall, Whitehouse, Comstock
+- **Desktop Labels (4):** Pelosi +93%, Suozzi +144%, Mo Brooks -150%, 3 outliers (+228% to +565%)
 - **Mobile Priority-1 Labels (2):** Pelosi +93%, Brooks -150%
 
 ### Beat 4: One Senator flips both the Senate and Democratic averages positive. (`beat-04-illusion` · `chamber-party`)

@@ -11153,8 +11153,8 @@
           "mobileText": null,
           "priority": 2,
           "desktop": {
-            "x": 598.0,
-            "y": 362.0
+            "x": 596.0,
+            "y": 198.0
           },
           "mobile": {
             "x": 265.0,
@@ -11183,12 +11183,12 @@
         {
           "id": "b2-ann-parked",
           "entityId": "house_barbarajhonorable_comstock",
-          "text": "Marshall, Whitehouse, Comstock",
+          "text": "3 outliers (+228% to +565%)",
           "mobileText": null,
           "priority": 3,
           "desktop": {
-            "x": 742.0,
-            "y": 348.0
+            "x": 746.0,
+            "y": 384.0
           },
           "mobile": {
             "x": 332.0,
