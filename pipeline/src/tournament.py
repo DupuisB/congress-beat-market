@@ -110,22 +110,23 @@ def score_hf_stock_act_returns() -> CandidateScore:
     fwd120 = [
         float(r["excess_fwd_120d"]) * 100.0
         for r in trade_rows
-        if r.get("excess_fwd_120d") not in ("", None)
+        if r.get("direction") == "buy" and r.get("excess_fwd_120d") not in ("", None)
     ]
     mean_120 = statistics.mean(fwd120)
     median_120 = statistics.median(fwd120)
-    completeness_ratio = len(fwd120) / max(1, len(trade_rows))
+    buy_rows = sum(1 for r in trade_rows if r.get("direction") == "buy")
+    completeness_ratio = len(fwd120) / max(1, buy_rows)
 
     return CandidateScore(
         name="HF STOCK Act Event-Study Trades (CC BY-NC 4.0)",
         entities=len(member_rows),
         records=len(trade_rows),
-        surprise_score=30.0,  # out of 40: confirms zero fixed-horizon alpha (-0.78% at 120d)
+        surprise_score=30.0,  # out of 40: confirms zero fixed-horizon buy alpha (-0.72% at 120d)
         granularity_score=20.0,  # out of 30: only 1,000 sampled trades across 109 members
-        completeness_score=round(30.0 * completeness_ratio, 1),  # ~50.8% have 120d excess
+        completeness_score=round(30.0 * completeness_ratio, 1),  # ~49.8% of buys have 120d excess
         key_finding=(
-            f"{len(trade_rows)} trades ({len(fwd120)} priced at 120d): mean {mean_120:+.2f}%, "
-            f"median {median_120:+.2f}%; valuable robustness cross-check against Kadoa."
+            f"{buy_rows} buys ({len(fwd120)} priced at 120d): mean {mean_120:+.2f}%, "
+            f"median {median_120:+.2f}%; valuable buy-only robustness cross-check."
         ),
     )
 

@@ -10,6 +10,20 @@ Tone = Literal["neutral", "accent", "secondary", "tertiary"]
 HighlightTone = Literal["accent", "secondary", "tertiary"]
 AnnotationPriority = Literal[1, 2, 3]
 LabelAnchor = Literal["start", "middle", "end"]
+PartyCode = Literal["D", "R", "I"]
+ChamberCode = Literal["house", "senate"]
+LayoutType = Literal[
+    "default",
+    "waffle-split",
+    "beeswarm-skew",
+    "trimmed-drop",
+    "chamber-party",
+    "activity-scatter",
+    "superstar-anatomy",
+    "explorer",
+]
+GuideOrientation = Literal["vertical", "horizontal"]
+GuideStyle = Literal["zero", "median", "mean", "muted"]
 
 
 class StrictModel(BaseModel):
@@ -36,6 +50,57 @@ class TextSegment(StrictModel):
     tone: HighlightTone | None = None
 
 
+class GuideLine(StrictModel):
+    id: str = Field(min_length=1)
+    orientation: GuideOrientation
+    style: GuideStyle = "muted"
+    desktopStart: PointPosition
+    desktopEnd: PointPosition
+    mobileStart: PointPosition
+    mobileEnd: PointPosition
+    label: str | None = None
+    mobileLabel: str | None = None
+    desktopLabelPos: PointPosition | None = None
+    mobileLabelPos: PointPosition | None = None
+    labelAnchor: LabelAnchor = "middle"
+
+
+class AxisTick(StrictModel):
+    id: str = Field(min_length=1)
+    text: str = Field(min_length=1)
+    mobileText: str | None = None
+    desktop: PointPosition
+    mobile: PointPosition
+    anchor: LabelAnchor = "middle"
+    showOnMobile: bool = True
+
+
+class LaneHeader(StrictModel):
+    id: str = Field(min_length=1)
+    text: str = Field(min_length=1)
+    mobileText: str | None = None
+    desktop: PointPosition
+    mobile: PointPosition
+    anchor: LabelAnchor = "start"
+    tone: Tone = "neutral"
+
+
+class SuperstarProfile(StrictModel):
+    entityId: str = Field(min_length=1)
+    name: str = Field(min_length=1)
+    party: PartyCode
+    state: str = Field(min_length=1)
+    scoredBuys: int = Field(gt=0)
+    meanExcess: float
+    medianTradeExcess: float
+    tradeWinRatePct: float
+    topDriver: str = Field(min_length=1)
+    desktopMean: PointPosition
+    desktopMedian: PointPosition
+    mobileMean: PointPosition
+    mobileMedian: PointPosition
+
+
 class EntityState(StrictModel):
     id: str = Field(min_length=1)
     label: str = Field(min_length=1)
@@ -46,16 +111,28 @@ class EntityState(StrictModel):
     opacity: float = Field(ge=0.0, le=1.0)
     desktop: PointPosition
     mobile: PointPosition
+    party: PartyCode | None = None
+    chamber: ChamberCode | None = None
+    state: str | None = None
+    scoredBuys: int | None = Field(default=None, ge=0)
+    avgExcess: float | None = None
+    weightedExcess: float | None = None
+    avgRet: float | None = None
+    estVolumeUsd: float | None = Field(default=None, ge=0.0)
+    desktopAlt: PointPosition | None = None
+    mobileAlt: PointPosition | None = None
 
 
 class Annotation(StrictModel):
     id: str = Field(min_length=1)
     entityId: str = Field(min_length=1)
     text: str = Field(min_length=1)
+    mobileText: str | None = None
     priority: AnnotationPriority
     desktop: PointPosition
     mobile: PointPosition
     anchor: LabelAnchor = "middle"
+    mobileAnchor: LabelAnchor | None = None
 
 
 class Beat(StrictModel):
@@ -66,6 +143,10 @@ class Beat(StrictModel):
     bodySegments: list[TextSegment] = Field(min_length=1)
     takeaway: str = Field(min_length=1)
     chartSubtitle: str = Field(min_length=1)
+    layoutType: LayoutType = "default"
+    guides: list[GuideLine] = Field(default_factory=list)
+    axisTicks: list[AxisTick] = Field(default_factory=list)
+    laneHeaders: list[LaneHeader] = Field(default_factory=list)
     entities: list[EntityState] = Field(min_length=1)
     annotations: list[Annotation]
 
@@ -101,7 +182,9 @@ class StoryData(StrictModel):
     title: str = Field(min_length=1)
     dek: str = Field(min_length=1)
     byline: str = Field(min_length=1)
+    methodologyNote: str | None = None
     viewBoxes: ViewBoxes
+    superstarProfiles: list[SuperstarProfile] = Field(default_factory=list)
     beats: list[Beat] = Field(min_length=1)
 
     @model_validator(mode="after")

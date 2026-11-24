@@ -6,7 +6,7 @@ Every raw dataset retained for this essay was downloaded directly from an open, 
 
 - **Attribution:** Kadoa (`kadoa-org/congress-trading-monitor`), aggregated from U.S. House Clerk Financial Disclosure PTRs and U.S. Senate eFD STOCK Act filings (2011–2026).
 - **License:** MIT License (`https://raw.githubusercontent.com/kadoa-org/congress-trading-monitor/main/LICENSE`).
-- **Return Methodology:** Trade-level buy-to-latest-close cumulative return minus S&P 500 (`SPY`) return over the identical calendar holding window (`avg_excess` = equal-weighted across a filer's priced stock buys; `weighted_excess` = midpoint-dollar-weighted; minimum 20 priced buys per filer).
+- **Return Methodology & Cleaning:** Trade-level buy-to-latest-close cumulative return minus S&P 500 (`SPY`) return over the identical calendar holding window, non-annualized (`avg_excess` = equal-weighted across a filer's priced stock buys; `weighted_excess` = midpoint-dollar-weighted; minimum 20 priced buys per filer; unpriced/delisted tickers excluded; options benchmarked on underlying stock return). During Phase 1 cleaning, two raw House Clerk name variants for Rep. C. Scott Franklin (Bioguide `F000472`: `house_cscott_franklin` and `house_scottscott_franklin`) were merged into a single lawmaker (yielding 127 unique congressional filers), trailing punctuation was stripped from `Jerry Moran,`, and amended-filing duplicate rows in individual superstar trade logs were deduplicated by `(transaction_date, owner, ticker, transaction_type, amount_range_low, amount_range_high)`.
 
 | Local Path | Exact Source URL | UTC Fetch Timestamp | Rows / Records | Columns / Keys | SHA-256 |
 | --- | --- | --- | ---: | ---: | --- |

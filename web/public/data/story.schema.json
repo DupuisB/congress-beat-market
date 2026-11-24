@@ -18,6 +18,18 @@
           "title": "Text",
           "type": "string"
         },
+        "mobileText": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mobiletext"
+        },
         "priority": {
           "enum": [
             1,
@@ -42,6 +54,23 @@
           ],
           "title": "Anchor",
           "type": "string"
+        },
+        "mobileAnchor": {
+          "anyOf": [
+            {
+              "enum": [
+                "start",
+                "middle",
+                "end"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mobileanchor"
         }
       },
       "required": [
@@ -53,6 +82,62 @@
         "mobile"
       ],
       "title": "Annotation",
+      "type": "object"
+    },
+    "AxisTick": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "mobileText": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mobiletext"
+        },
+        "desktop": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "mobile": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "anchor": {
+          "default": "middle",
+          "enum": [
+            "start",
+            "middle",
+            "end"
+          ],
+          "title": "Anchor",
+          "type": "string"
+        },
+        "showOnMobile": {
+          "default": true,
+          "title": "Showonmobile",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "desktop",
+        "mobile"
+      ],
+      "title": "AxisTick",
       "type": "object"
     },
     "Beat": {
@@ -95,6 +180,42 @@
           "minLength": 1,
           "title": "Chartsubtitle",
           "type": "string"
+        },
+        "layoutType": {
+          "default": "default",
+          "enum": [
+            "default",
+            "waffle-split",
+            "beeswarm-skew",
+            "trimmed-drop",
+            "chamber-party",
+            "activity-scatter",
+            "superstar-anatomy",
+            "explorer"
+          ],
+          "title": "Layouttype",
+          "type": "string"
+        },
+        "guides": {
+          "items": {
+            "$ref": "#/$defs/GuideLine"
+          },
+          "title": "Guides",
+          "type": "array"
+        },
+        "axisTicks": {
+          "items": {
+            "$ref": "#/$defs/AxisTick"
+          },
+          "title": "Axisticks",
+          "type": "array"
+        },
+        "laneHeaders": {
+          "items": {
+            "$ref": "#/$defs/LaneHeader"
+          },
+          "title": "Laneheaders",
+          "type": "array"
         },
         "entities": {
           "items": {
@@ -174,6 +295,135 @@
         },
         "mobile": {
           "$ref": "#/$defs/PointPosition"
+        },
+        "party": {
+          "anyOf": [
+            {
+              "enum": [
+                "D",
+                "R",
+                "I"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Party"
+        },
+        "chamber": {
+          "anyOf": [
+            {
+              "enum": [
+                "house",
+                "senate"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Chamber"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "State"
+        },
+        "scoredBuys": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scoredbuys"
+        },
+        "avgExcess": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avgexcess"
+        },
+        "weightedExcess": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Weightedexcess"
+        },
+        "avgRet": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avgret"
+        },
+        "estVolumeUsd": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Estvolumeusd"
+        },
+        "desktopAlt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PointPosition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mobileAlt": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PointPosition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "required": [
@@ -188,6 +438,175 @@
         "mobile"
       ],
       "title": "EntityState",
+      "type": "object"
+    },
+    "GuideLine": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "orientation": {
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "title": "Orientation",
+          "type": "string"
+        },
+        "style": {
+          "default": "muted",
+          "enum": [
+            "zero",
+            "median",
+            "mean",
+            "muted"
+          ],
+          "title": "Style",
+          "type": "string"
+        },
+        "desktopStart": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "desktopEnd": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "mobileStart": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "mobileEnd": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "mobileLabel": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mobilelabel"
+        },
+        "desktopLabelPos": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PointPosition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mobileLabelPos": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PointPosition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "labelAnchor": {
+          "default": "middle",
+          "enum": [
+            "start",
+            "middle",
+            "end"
+          ],
+          "title": "Labelanchor",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "orientation",
+        "desktopStart",
+        "desktopEnd",
+        "mobileStart",
+        "mobileEnd"
+      ],
+      "title": "GuideLine",
+      "type": "object"
+    },
+    "LaneHeader": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "mobileText": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mobiletext"
+        },
+        "desktop": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "mobile": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "anchor": {
+          "default": "start",
+          "enum": [
+            "start",
+            "middle",
+            "end"
+          ],
+          "title": "Anchor",
+          "type": "string"
+        },
+        "tone": {
+          "default": "neutral",
+          "enum": [
+            "neutral",
+            "accent",
+            "secondary",
+            "tertiary"
+          ],
+          "title": "Tone",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "desktop",
+        "mobile"
+      ],
+      "title": "LaneHeader",
       "type": "object"
     },
     "PointPosition": {
@@ -207,6 +626,86 @@
         "y"
       ],
       "title": "PointPosition",
+      "type": "object"
+    },
+    "SuperstarProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "entityId": {
+          "minLength": 1,
+          "title": "Entityid",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "party": {
+          "enum": [
+            "D",
+            "R",
+            "I"
+          ],
+          "title": "Party",
+          "type": "string"
+        },
+        "state": {
+          "minLength": 1,
+          "title": "State",
+          "type": "string"
+        },
+        "scoredBuys": {
+          "exclusiveMinimum": 0,
+          "title": "Scoredbuys",
+          "type": "integer"
+        },
+        "meanExcess": {
+          "title": "Meanexcess",
+          "type": "number"
+        },
+        "medianTradeExcess": {
+          "title": "Mediantradeexcess",
+          "type": "number"
+        },
+        "tradeWinRatePct": {
+          "title": "Tradewinratepct",
+          "type": "number"
+        },
+        "topDriver": {
+          "minLength": 1,
+          "title": "Topdriver",
+          "type": "string"
+        },
+        "desktopMean": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "desktopMedian": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "mobileMean": {
+          "$ref": "#/$defs/PointPosition"
+        },
+        "mobileMedian": {
+          "$ref": "#/$defs/PointPosition"
+        }
+      },
+      "required": [
+        "entityId",
+        "name",
+        "party",
+        "state",
+        "scoredBuys",
+        "meanExcess",
+        "medianTradeExcess",
+        "tradeWinRatePct",
+        "topDriver",
+        "desktopMean",
+        "desktopMedian",
+        "mobileMean",
+        "mobileMedian"
+      ],
+      "title": "SuperstarProfile",
       "type": "object"
     },
     "TextSegment": {
@@ -308,8 +807,27 @@
       "title": "Byline",
       "type": "string"
     },
+    "methodologyNote": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Methodologynote"
+    },
     "viewBoxes": {
       "$ref": "#/$defs/ViewBoxes"
+    },
+    "superstarProfiles": {
+      "items": {
+        "$ref": "#/$defs/SuperstarProfile"
+      },
+      "title": "Superstarprofiles",
+      "type": "array"
     },
     "beats": {
       "items": {
