@@ -6,14 +6,17 @@ Live map of the Pudding visual essay factory: directories, data contracts, and v
 
 ```text
 .
-├── GEMINI.md                     # Root agent rules (imports docs/WORKFLOW.md & docs/DESIGN_SYSTEM.md)
+├── GEMINI.md                     # Root agent rules (imports WORKFLOW, DESIGN_SYSTEM, AUTONOMOUS)
 ├── ARCHITECTURE.md               # This file — live map of modules, contracts, and commands
 ├── Makefile                      # Convenience wrappers for pipeline, web, and audit commands
 ├── package.json                  # Root orchestration scripts
+├── .gemini/skills/autonomous-essay/
+│   └── SKILL.md                  # Reusable Antigravity skill for unattended Phase 0->5 essay runs
 ├── docs/
 │   ├── WORKFLOW.md               # 5-phase scrollytelling production assembly line
 │   ├── DESIGN_SYSTEM.md          # Editorial typography, palette, sticky layout, and anti-slop spec
-│   └── CRITIC_RUBRIC.md          # Fresh-context Tier B VLM critic prompt and strict JSON schema
+│   ├── AUTONOMOUS.md             # Unattended overnight runbook (Phase 0 tournament + git ratchet)
+│   └── CRITIC_RUBRIC.md          # Fresh-context Tier B VLM critic prompt (scores + defects JSON)
 ├── pipeline/                     # Python 3.12+ (uv) — EDA, precomputed layouts, contract emission
 │   ├── pyproject.toml            # uv project config (pydantic, pillow, ruff, ty)
 │   └── src/
@@ -60,6 +63,16 @@ Live map of the Pudding visual essay factory: directories, data contracts, and v
 - `[data-viz-stage]`: Marks the bounding visual stage container for clipping/containment checks.
 - `[data-viz-label]`: Marks every chart annotation label checked for overlap and stage containment (strictly on visible elements: `opacity > 0.5`, `visibility !== 'hidden'`, non-zero rect).
 - `[data-active-step]`: Exposes the current active beat index on the scrolly container for deterministic scroll-state verification.
+- `[data-viz-interactive]`: Marks the interactive "explore it yourself" finale controls verified and captured (`final-interactive-desktop.png`, `final-interactive-mobile.png`) by Tier A.
+
+## Autonomous Run Artifacts (Per Essay Branch)
+
+Created on `essay/<slug>-<YYYYMMDD>` branches during Autonomous Essay Mode (`docs/AUTONOMOUS.md`):
+
+- `STATE.json` — Disk-backed resume cursor (`theme`, `slug`, `currentPhase`, `bestScore`, `bestTag`, `escapeCount`, `polishRound`, `status`, `updatedAt`).
+- `RUN_LOG.md` — Chronological record of tournament scoring, editorial decisions, ratchet promotions, rollbacks, and data escapes.
+- `SOURCES.md` — Verified provenance log (exact public URLs, UTC fetch timestamps, licenses, row/column counts, SHA-256 hashes, and `pipeline/data/raw/` paths) checked by Tier A in non-smoke mode.
+- `FINAL_REPORT.md` — Concise delivery report with thesis, sources, visual score progression, and preview command.
 
 ## Commands
 
@@ -70,5 +83,6 @@ Run from repository root:
 - `npm run web:dev` (or `make web-dev`) — Start the Vite dev server.
 - `npm run web:typecheck` (or `make web-typecheck`) — Run `tsc --noEmit` in `web/` and `audit/`.
 - `npm run web:build` (or `make web-build`) — Build the production bundle in `web/`.
-- `npm run audit:tier-a` (or `make audit-tier-a`) — Run Playwright Tier A checks (desktop + mobile) and stitch contact sheets into `audit/artifacts/`.
-- `npm run verify` (or `make verify`) — Full pipeline check + smoke emit + web typecheck/build + Tier A audit.
+- `npm run audit:tier-a` (or `make audit-tier-a`) — Run full Playwright Tier A checks (including `SOURCES.md` provenance + interactive finale + contact sheets).
+- `npm run audit:tier-a -- --smoke` (or `npm run audit:tier-a --smoke` / `make audit-tier-a-smoke`) — Run Tier A against the smoke fixture (skips `SOURCES.md` provenance check).
+- `npm run verify` (or `make verify`) — Full pipeline check + smoke emit + web typecheck/build + Tier A smoke audit.

@@ -2,6 +2,7 @@
 
 @./docs/WORKFLOW.md
 @./docs/DESIGN_SYSTEM.md
+@./docs/AUTONOMOUS.md
 
 ## Mission
 This repository is a reusable, production-grade factory for *The Pudding*-style interactive scrollytelling visual essays. Python (`pipeline/`) owns all exploratory data analysis, data cleaning, complex layout precomputation, and contract emission. TypeScript/React (`web/`) owns pure-projection editorial rendering. Playwright (`audit/`) and a fresh-context VLM critic (`docs/CRITIC_RUBRIC.md`) own verification.
@@ -22,7 +23,7 @@ This repository is a reusable, production-grade factory for *The Pudding*-style 
 4. **Git Discipline:**
    - Use atomic Conventional Commits (`chore:`, `feat:`, `data:`, `fix:`, `audit:`).
    - Keep `ARCHITECTURE.md` synchronized whenever directory structure, data contracts, or commands change.
-5. **Hard Phase Gates:**
-   - **Never** cross from **Phase 1 → Phase 2** without explicit human review and sign-off on `STORYBOARD.md`, `web/public/data/story.json`, `web/public/data/story.schema.json`, and `web/public/data/manifest.json`.
-   - **Never** trigger a **Phase 4** data escape hatch (reopening `pipeline/`) without explicit human approval.
-   - **Never** drop entities or outliers to fix a layout collision; `manifest.json` locks entity counts per beat.
+5. **Hard Phase Gates (Manual vs. Autonomous Mode):**
+   - **Manual Mode (default):** Never cross from **Phase 1 → Phase 2** without explicit human review and sign-off on `STORYBOARD.md`, `web/public/data/story.json`, `web/public/data/story.schema.json`, and `web/public/data/manifest.json`. Never trigger a **Phase 4** data escape hatch without explicit human approval.
+   - **Autonomous Essay Mode (`/goal` or `autonomous-essay` skill):** Follow `docs/AUTONOMOUS.md` strictly — zero stalls, no human approval prompts, real-data tournament with `SOURCES.md` provenance, fresh-context Editorial & Visual Critic gates, monotonic `best-essay` git ratchet, and max 2 autonomous data escape cycles.
+   - **Always (both modes):** Never drop entities or outliers silently to fix a layout collision; `manifest.json` locks entity counts per beat.
