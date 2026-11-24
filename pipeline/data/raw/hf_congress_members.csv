@@ -1,0 +1,110 @@
+bioguide_id,chamber,member_name,latest_party,state,filings,first_filing_date,last_filing_date
+A000148,house,Jake Auchincloss,Democrat,MA,9,2022-04-10,2026-05-22
+A000360,senate,,,,16,,
+A000373,house,Brad Ashford,Democrat,NE,19,2015-03-24,2016-12-20
+B000574,house,Earl Blumenauer,Democrat,OR,126,2015-02-17,2024-12-07
+B000575,senate,,,,5,,
+B001248,house,Michael C. Burgess,Republican,TX,40,2021-11-17,2024-10-01
+B001260,house,Vern Buchanan,Republican,FL,56,2015-01-19,2022-03-24
+B001273,house,Diane Black,Republican,TN,65,2015-02-05,2019-01-03
+B001274,house,Mo Brooks,Republican,AL,60,2015-01-07,2022-12-31
+B001292,house,"Donald S. Beyer, Jr.",Democrat,VA,59,2019-12-07,2026-10-01
+B001300,house,Nanette Diaz Barragán,Democrat,CA,2,2024-03-27,2024-04-25
+B001325,house,Sheri Biggs,Republican,SC,13,2025-10-05,2026-10-27
+C000174,senate,,,,100,,
+C001035,senate,,,,110,,
+C001047,senate,,,,43,,
+C001062,house,K. Michael Conaway,Republican,TX,78,2015-01-03,2021-03-25
+C001068,house,Steve Cohen,Democrat,TN,82,2015-05-15,2026-09-01
+C001075,house,Bill Cassidy,Republican,LA,26,2015-08-20,2015-08-20
+C001078,house,Gerald E. Connolly,Democrat,VA,40,2015-04-24,2025-05-17
+C001101,house,Katherine M. Clark,Democrat,MA,74,2015-01-08,2026-07-14
+C001105,house,Barbara Comstock,Republican,VA,29,2015-06-19,2019-01-01
+C001107,house,Carlos Curbelo,Republican,FL,52,2015-06-30,2018-10-03
+D000399,house,Lloyd Doggett,Democrat,TX,119,2015-01-09,2026-10-05
+D000617,house,Suzan K. DelBene,Democrat,WA,168,2015-01-19,2026-10-28
+D000620,house,John K. Delaney,Democrat,MD,100,2015-01-22,2019-01-02
+D000624,house,Debbie Dingell,Democrat,MI,125,2015-02-26,2026-07-22
+D000626,house,Warren Davidson,Republican,OH,3,2018-10-10,2026-03-25
+D000628,house,Neal P. Dunn,Republican,FL,25,2017-05-15,2026-06-23
+E000296,house,Dwight Evans,Democrat,PA,28,2017-05-24,2026-06-24
+E000298,house,Ron Estes,Republican,KS,6,2022-03-09,2023-09-30
+F000372,house,Rodney P. Frelinghuysen,Republican,NJ,58,2015-02-03,2018-12-21
+F000450,house,Virginia Foxx,Republican,NC,127,2015-01-08,2026-07-10
+F000459,house,"Charles J. ""Chuck"" Fleischmann",Republican,TN,88,2015-02-12,2026-08-12
+F000461,house,Bill Flores,Republican,TX,59,2015-01-12,2020-01-09
+G000061,house,Mike Garcia,Republican,CA,17,2020-06-17,2024-08-09
+G000563,house,Bob Gibbs,Republican,OH,82,2015-04-08,2022-12-22
+G000583,house,Josh Gottheimer,Democrat,NJ,113,2017-03-10,2026-10-07
+G000584,house,Greg Gianforte,Republican,MT,85,2017-07-19,2020-12-29
+G000588,house,Anthony Gonzalez,Republican,OH,9,2019-08-14,2023-01-20
+G000590,house,Mark E. Green,Republican,TN,80,2020-07-06,2025-07-16
+G000591,house,Michael Guest,Republican,MS,23,2019-07-17,2026-08-14
+G000599,house,Daniel S. Goldman,Democrat,NY,9,2023-02-24,2025-03-28
+G000603,house,Brandon Gill,Republican,TX,5,2025-05-30,2026-09-09
+H001061,senate,,,,87,,
+H001072,house,J. French Hill,Republican,AR,14,2016-02-03,2026-01-23
+H001082,house,Kevin Hern,Republican,OK,91,2019-01-15,2026-10-28
+H001086,house,Diana Harshbarger,Republican,TN,38,2021-08-16,2026-10-27
+I000024,senate,,,,67,,
+J000294,house,Hakeem S. Jeffries,Democrat,NY,14,2016-09-10,2021-05-30
+J000295,house,David P. Joyce,Republican,OH,17,2015-02-11,2025-02-07
+J000309,house,Jonathan L. Jackson,Democrat,IL,37,2023-05-12,2026-10-19
+K000376,house,Mike Kelly,Republican,PA,112,2015-02-26,2026-10-14
+K000383,senate,,,,46,,
+K000389,house,Ro Khanna,Democrat,CA,120,2017-02-13,2026-10-07
+K000398,house,"Thomas H. Kean, Jr.",Republican,NJ,39,2023-02-11,2026-09-12
+L000480,house,Nita M. Lowey,Democrat,NY,2,2015-03-23,2017-02-03
+L000559,house,James R. Langevin,Democrat,RI,79,2015-08-10,2023-01-09
+L000564,house,Doug Lamborn,Republican,CO,64,2015-07-09,2024-12-05
+L000579,house,Alan S. Lowenthal,Democrat,CA,503,2015-01-14,2022-12-21
+L000590,house,Susie Lee,Democrat,NV,48,2019-03-04,2026-07-08
+L000597,house,Laurel M. Lee,Republican,FL,12,2023-06-01,2026-10-16
+L000601,house,Greg Landsman,Democrat,OH,9,2024-08-14,2025-05-13
+M000087,house,Carolyn B. Maloney,Democrat,NY,41,2016-05-26,2022-07-19
+M000934,senate,,,,4,,
+M001157,house,Michael T. McCaul,Republican,TX,140,2015-02-12,2026-10-14
+M001180,house,David B. McKinley,Republican,WV,38,2015-04-30,2022-10-12
+M001182,house,Mick Mulvaney,Republican,SC,8,2015-02-04,2017-01-11
+M001193,house,Thomas MacArthur,Republican,NJ,47,2015-03-05,2019-01-12
+M001199,house,Brian J. Mast,Republican,FL,30,2018-09-20,2024-03-26
+M001204,house,Daniel Meuser,Republican,PA,19,2020-08-13,2026-10-14
+M001217,house,Jared Moskowitz,Democrat,FL,21,2023-03-10,2026-08-27
+M001222,house,Max L. Miller,Republican,OH,40,2023-02-03,2026-10-27
+M001236,house,Tim Moore,Republican,NC,21,2025-02-15,2026-08-20
+N000182,house,Randy Neugebauer,Republican,TX,32,2015-01-30,2017-01-29
+P000034,house,"Frank Pallone, Jr.",Democrat,NJ,4,2019-02-15,2021-08-16
+P000048,house,August Pfluger,Republican,TX,10,2021-08-03,2026-09-14
+P000523,house,David E. Price,Democrat,NC,53,2015-02-04,2022-04-06
+P000595,senate,,,,54,,
+P000598,house,Jared Polis,Democrat,CO,56,2015-02-12,2019-01-16
+P000608,house,Scott H. Peters,Democrat,CA,122,2015-01-12,2026-10-15
+R000122,senate,,,,73,,
+R000307,senate,,,,80,,
+R000395,house,Harold Rogers,Republican,KY,141,2015-02-04,2026-09-23
+R000583,house,Thomas J. Rooney,Republican,FL,28,2017-01-16,2019-02-11
+R000586,house,James B. Renacci,Republican,OH,96,2015-01-26,2019-01-02
+R000605,senate,,,,9,,
+R000606,house,Jamie Raskin,Democrat,MD,4,2021-08-13,2025-04-09
+R000607,house,Francis Rooney,Republican,FL,48,2017-02-17,2021-02-03
+R000609,house,John H. Rutherford,Republican,FL,25,2018-08-20,2023-08-02
+R000614,house,Chip Roy,Republican,TX,5,2024-04-11,2026-06-10
+S000168,house,Maria Elvira Salazar,Republican,FL,26,2022-06-10,2026-10-07
+S000250,house,Pete Sessions,Republican,TX,139,2015-05-14,2026-10-27
+S000480,house,Louise McIntosh Slaughter,Democrat,NY,13,2015-06-03,2018-03-06
+S000583,house,Lamar Smith,Republican,TX,51,2015-01-19,2019-01-10
+S000929,house,Victoria Spartz,Republican,IN,21,2021-02-20,2025-04-26
+S001148,house,Michael K. Simpson,Republican,ID,28,2015-01-10,2023-05-12
+S001180,house,Kurt Schrader,Democrat,OR,96,2015-02-06,2023-01-06
+S001190,house,Bradley Scott Schneider,Democrat,IL,37,2015-01-16,2025-07-02
+S001199,house,Lloyd Smucker,Republican,PA,7,2017-10-21,2026-04-30
+S001217,senate,,,,17,,
+T000475,house,David A. Trott,Republican,MI,49,2015-02-02,2019-02-07
+T000479,house,Van Taylor,Republican,TX,17,2019-02-15,2022-12-26
+T000490,house,David J. Taylor,Republican,OH,29,2025-04-03,2026-10-29
+W000437,senate,,,,4,,
+W000797,house,Debbie Wasserman Schultz,Democrat,FL,50,2015-06-12,2026-07-14
+W000802,senate,,,,87,,
+W000804,house,Robert J. Wittman,Republican,VA,59,2015-10-15,2026-07-10
+Y000062,house,John A. Yarmuth,Democrat,KY,34,2015-02-27,2021-11-04
+Y000067,house,Rudy Yakym III,Republican,IN,27,2022-12-28,2026-10-20
