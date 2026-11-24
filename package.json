@@ -9,7 +9,7 @@
     "web:dev": "npm --prefix web run dev",
     "web:typecheck": "npm --prefix web run typecheck && npm --prefix audit run typecheck",
     "web:build": "npm --prefix web run build",
-    "audit:tier-a": "npm --prefix audit run tier-a",
-    "verify": "npm run pipeline:check && npm run pipeline:smoke && npm run web:typecheck && npm run web:build && npm run audit:tier-a"
+    "audit:tier-a": "npm --prefix audit run tier-a --",
+    "verify": "npm run pipeline:check && npm run pipeline:smoke && npm run web:typecheck && npm run web:build && npm run audit:tier-a -- --smoke"
   }
 }

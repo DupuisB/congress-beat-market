@@ -17,7 +17,14 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const WEB_DIR = path.join(REPO_ROOT, "web");
 const PIPELINE_DIR = path.join(REPO_ROOT, "pipeline");
 const DATA_DIR = path.join(WEB_DIR, "public", "data");
+const RAW_DATA_DIR = path.join(PIPELINE_DIR, "data", "raw");
+const SOURCES_MD_PATH = path.join(REPO_ROOT, "SOURCES.md");
 const ARTIFACTS_DIR = path.join(__dirname, "artifacts");
+
+const IS_SMOKE_MODE =
+  process.argv.includes("--smoke") ||
+  process.env["AUDIT_SMOKE"] === "1" ||
+  process.env["npm_config_smoke"] === "true";
 
 const manifestBeatSchema = z
   .object({
@@ -171,6 +178,51 @@ function validateStoryAgainstManifest(): StoryManifest {
   }
 
   return manifest;
+}
+
+function verifySourcesProvenance(): void {
+  if (!existsSync(SOURCES_MD_PATH)) {
+    throw new Error(
+      `Missing ${SOURCES_MD_PATH}. Real essays must document downloaded datasets in SOURCES.md (pass --smoke for smoke fixtures).`,
+    );
+  }
+
+  const content = readFileSync(SOURCES_MD_PATH, "utf-8").trim();
+  if (content.length === 0) {
+    throw new Error(`SOURCES.md is empty at ${SOURCES_MD_PATH}`);
+  }
+
+  if (!/https?:\/\/\S+/i.test(content)) {
+    throw new Error("SOURCES.md must include at least one public source URL (http/https).");
+  }
+
+  if (!/\b[0-9a-f]{64}\b/i.test(content)) {
+    throw new Error("SOURCES.md must include at least one 64-character SHA-256 hash.");
+  }
+
+  const rawPathMatches = Array.from(
+    new Set(content.match(/pipeline\/data\/raw\/[^\s`)'"|>,]+/g) ?? []),
+  );
+  if (rawPathMatches.length === 0) {
+    throw new Error(
+      `SOURCES.md must reference at least one downloaded raw data file under pipeline/data/raw/ (${RAW_DATA_DIR}).`,
+    );
+  }
+
+  for (const relPath of rawPathMatches) {
+    const absPath = path.join(REPO_ROOT, relPath);
+    if (!existsSync(absPath)) {
+      throw new Error(`SOURCES.md references missing raw data file: ${relPath}`);
+    }
+    const stat = statSync(absPath);
+    if (!stat.isFile() || stat.size === 0) {
+      throw new Error(`SOURCES.md references empty or non-file raw dataset: ${relPath}`);
+    }
+  }
+
+  console.log(
+    `  Provenance OK: SOURCES.md verified (${rawPathMatches.length} non-empty raw file(s) under pipeline/data/raw/)`,
+  );
 }
 
 async function waitForServer(url: string, timeoutMs: number): Promise<void> {
@@ -415,6 +467,86 @@ async function checkVisibleLabelsAndEntities(
   };
 }
 
+async function verifyInteractiveFinale(
+  page: Page,
+  viewport: ViewportSpec,
+  lastStep: number,
+): Promise<void> {
+  const active = await scrollToStep(page, lastStep, viewport.scrollAlignRatio);
+  if (active !== lastStep) {
+    throw new Error(
+      `[${viewport.name}] Interactive finale failed to reach final step ${lastStep} (got ${active})`,
+    );
+  }
+
+  const interactiveContainer = page.locator("[data-viz-interactive]").first();
+  const containerCount = await page.locator("[data-viz-interactive]").count();
+  if (containerCount === 0) {
+    throw new Error(
+      `[${viewport.name}] Final beat (${lastStep}) is missing [data-viz-interactive] controls container.`,
+    );
+  }
+  await interactiveContainer.waitFor({ state: "visible", timeout: 5000 });
+
+  const controls = interactiveContainer.locator(
+    'button, input, select, [role="button"], [data-interactive-control]',
+  );
+  const controlCount = await controls.count();
+  if (controlCount === 0) {
+    throw new Error(
+      `[${viewport.name}] [data-viz-interactive] container has no interactive controls.`,
+    );
+  }
+
+  // Exercise a visible button/filter (prefer a non-pressed button if available) and any text input.
+  let exercised = 0;
+  for (let i = 0; i < controlCount; i += 1) {
+    const control = controls.nth(i);
+    if (!(await control.isVisible())) {
+      continue;
+    }
+    const tag = await control.evaluate((el) => el.tagName.toLowerCase());
+    if (tag === "button" || (await control.getAttribute("role")) === "button") {
+      const pressed = await control.getAttribute("aria-pressed");
+      if (pressed !== "true" || controlCount === 1) {
+        await control.click();
+        exercised += 1;
+        break;
+      }
+    } else if (tag === "input") {
+      await control.fill("a");
+      exercised += 1;
+      break;
+    } else if (tag === "select") {
+      const optionCount = await control.locator("option").count();
+      if (optionCount > 1) {
+        await control.selectOption({ index: 1 });
+      }
+      exercised += 1;
+      break;
+    }
+  }
+
+  if (exercised === 0) {
+    const firstControl = controls.first();
+    await firstControl.hover();
+    exercised += 1;
+  }
+
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+      }),
+  );
+
+  const finalePngPath = path.join(ARTIFACTS_DIR, `final-interactive-${viewport.name}.png`);
+  await page.screenshot({ path: finalePngPath, fullPage: false });
+  console.log(
+    `  [${viewport.name}] interactive finale (${controlCount} controls, ${exercised} exercised) -> ${path.basename(finalePngPath)}`,
+  );
+}
+
 async function auditViewport(
   browser: Browser,
   baseUrl: string,
@@ -494,6 +626,9 @@ async function auditViewport(
     }
     console.log(`  [${viewport.name}] rapid jump (0->${lastStep}->0): OK`);
 
+    // 4. Interactive finale check on final beat
+    await verifyInteractiveFinale(page, viewport, lastStep);
+
     if (consoleErrors.length > 0) {
       throw new Error(
         `[${viewport.name}] Console errors (${consoleErrors.length}): ${consoleErrors.join(" | ")}`,
@@ -528,11 +663,19 @@ function stitchContactSheets(): void {
 }
 
 async function main(): Promise<void> {
-  console.log("Tier A Audit: validating story.json against manifest.json...");
+  console.log(
+    `Tier A Audit (${IS_SMOKE_MODE ? "smoke" : "full"} mode): validating story.json against manifest.json...`,
+  );
   const manifest = validateStoryAgainstManifest();
   console.log(
     `  Manifest OK: ${manifest.slug} (${manifest.beatCount} beats, ${manifest.totalUniqueEntities} unique entities)`,
   );
+
+  if (!IS_SMOKE_MODE) {
+    verifySourcesProvenance();
+  } else {
+    console.log("  Provenance check skipped (--smoke mode)");
+  }
 
   rmSync(ARTIFACTS_DIR, { recursive: true, force: true });
   mkdirSync(ARTIFACTS_DIR, { recursive: true });

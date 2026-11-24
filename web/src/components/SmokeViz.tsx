@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import type { StoryData } from "../schema/story";
 import { MOTION, PALETTE, TONE_COLORS } from "../styles/tokens";
 
@@ -8,8 +9,26 @@ interface SmokeVizProps {
   isDesktop: boolean;
 }
 
+const COHORT_FILTERS = [
+  { id: "all", label: "All" },
+  { id: "cohort-a", label: "Cohort A" },
+  { id: "cohort-b", label: "Cohort B" },
+  { id: "cohort-c", label: "Cohort C" },
+] as const;
+
+type CohortFilterId = (typeof COHORT_FILTERS)[number]["id"];
+
 export function SmokeViz({ story, activeStep, isDesktop }: SmokeVizProps) {
   const safeIndex = Math.max(0, Math.min(activeStep, story.beats.length - 1));
+  const isFinalBeat = safeIndex === story.beats.length - 1;
+  const [selectedCohort, setSelectedCohort] = useState<CohortFilterId>("all");
+
+  useEffect(() => {
+    if (!isFinalBeat) {
+      setSelectedCohort("all");
+    }
+  }, [isFinalBeat]);
+
   const beat = story.beats[safeIndex];
   if (!beat) {
     return null;
@@ -121,6 +140,13 @@ export function SmokeViz({ story, activeStep, isDesktop }: SmokeVizProps) {
               const fill = TONE_COLORS[entity.tone];
               const isFocal = entity.tone !== "neutral";
               const radius = isDesktop ? entity.radius : Math.max(6, entity.radius * 0.72);
+              const matchesFilter =
+                !isFinalBeat || selectedCohort === "all" || entity.category === selectedCohort;
+              const computedOpacity = matchesFilter
+                ? isFinalBeat && selectedCohort !== "all"
+                  ? 1
+                  : entity.opacity
+                : 0.16;
               return (
                 <motion.g
                   key={entity.id}
@@ -129,7 +155,7 @@ export function SmokeViz({ story, activeStep, isDesktop }: SmokeVizProps) {
                   animate={{
                     x: pos.x,
                     y: pos.y,
-                    opacity: entity.opacity,
+                    opacity: computedOpacity,
                   }}
                   transition={{
                     duration: MOTION.durationSec,
@@ -190,12 +216,44 @@ export function SmokeViz({ story, activeStep, isDesktop }: SmokeVizProps) {
         </svg>
       </div>
 
-      <div className="hidden items-center justify-between border-t border-[#DDD7CC] pt-2 text-xs text-[#5C5852] lg:flex">
-        <span>{beat.takeaway}</span>
-        <span className="font-mono tabular-nums">
-          {beat.entities.length} marks · {visibleAnnotations.length} labels
-        </span>
-      </div>
+      {isFinalBeat ? (
+        <div
+          data-viz-interactive="true"
+          className="flex flex-wrap items-center justify-between gap-2 border-t border-[#DDD7CC] pt-2 text-xs"
+        >
+          <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-[#5C5852]">
+            Explore cohort
+          </span>
+          <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filter cohorts">
+            {COHORT_FILTERS.map((cohort) => {
+              const active = selectedCohort === cohort.id;
+              return (
+                <button
+                  key={cohort.id}
+                  type="button"
+                  data-interactive-control="filter"
+                  aria-pressed={active}
+                  onClick={() => setSelectedCohort(cohort.id)}
+                  className={`cursor-pointer border px-2 py-0.5 font-mono text-[11px] tabular-nums ${
+                    active
+                      ? "border-[#171614] bg-[#171614] text-[#FAF8F5]"
+                      : "border-[#DDD7CC] bg-[#F1EDE6] text-[#171614] hover:border-[#171614]/50"
+                  }`}
+                >
+                  {cohort.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="hidden items-center justify-between border-t border-[#DDD7CC] pt-2 text-xs text-[#5C5852] lg:flex">
+          <span>{beat.takeaway}</span>
+          <span className="font-mono tabular-nums">
+            {beat.entities.length} marks · {visibleAnnotations.length} labels
+          </span>
+        </div>
+      )}
     </div>
   );
 }
