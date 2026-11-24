@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.venv/
+**/.venv/
+
+# Python caches & build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# Frontend build outputs
+web/dist/
+web/.vite/
+
+# Verification artifacts (generated per audit run)
+audit/artifacts/
+playwright-report/
+test-results/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+*.swp
+.env
+.env.local
