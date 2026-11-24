@@ -143,6 +143,7 @@ class Beat(StrictModel):
     bodySegments: list[TextSegment] = Field(min_length=1)
     takeaway: str = Field(min_length=1)
     chartSubtitle: str = Field(min_length=1)
+    mobileChartSubtitle: str | None = None
     layoutType: LayoutType = "default"
     guides: list[GuideLine] = Field(default_factory=list)
     axisTicks: list[AxisTick] = Field(default_factory=list)

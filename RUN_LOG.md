@@ -39,3 +39,25 @@ The fresh-context Editorial Critic audited `STORYBOARD.md`, `web/public/data/sto
 4. **Fixed HF 120-day cross-check to buys only (`direction == "buy"`):** Filtered out sales (`n = 270` priced buys: `-0.72%` mean, `+0.07%` median, `50.7%` beat rate) for a strict apples-to-apples check in both `tournament.py` and `emit_congress_story.py`.
 5. **Upfront methodology disclosure:** Stated cumulative buy-to-latest-close vs. SPY (non-annualized) directly in Beat 1 body prose, and documented unpriced/delisted exclusions, underlying-stock option pricing, and deduplication in `methodologyNote` and `SOURCES.md`.
 6. **Resolved precomputed label clearances & strengthened visual variety:** Moved Beat 6 lane headers cleanly above each barbell (`y - 22` desktop / `y - 20` mobile), grouped Sen. Angus King (`I-ME`) into `SENATE D/I · 7` by caucus, added a mean-shift bridge callout on Beat 3, and differentiated Beat 7 (`explorer`) onto a distinct **Estimated Dollar Volume (log USD) X-axis** vs. Beat 5's Priced Buy Count X-axis.
+
+---
+
+## Phase 3 & 4 — Monotonic Git-Ratchet Polish Rounds
+
+### Baseline Visual Critic (Round 0 — `3791272`): `74/100` (5 blockers, 5 polish, 1 nit)
+- Scores: `legibility: 12`, `hierarchy: 15`, `editorialCraft: 17`, `visualVariety: 18`, `mobileFit: 12`.
+- Key blockers: Beat 6 desktop row-header/annotation collision on Whitehouse; Beat 5 mobile dot occlusion (`Whitehouse`, `Gottheimer`, `0%`); Beat 5 desktop `Tuberville` crossing scatter cloud; Beat 7 mobile `Whitehouse` dot occlusion; final-interactive dimmed opacity + residual saturation on excluded marks.
+- Action: Did not promote (blockers present). Triggered **Phase 4 Escape Cycle #1** + **Polish Round 1**.
+
+### Escape Cycle #1 + Polish Round 1 (`2026-11-24T23:35:00Z`): `82/100` (4 blockers, 5 polish)
+- Scores: `legibility: 14`, `hierarchy: 17`, `editorialCraft: 19`, `visualVariety: 18`, `mobileFit: 14`.
+- Data/schema adjustments: Added `mobileChartSubtitle` to `Beat` (eliminating all mobile ellipsis truncation); unified Beat 1/2 color discipline (neutral gray context marks so accents have single meanings); relocated Beat 5/7 annotations into verified open whitespace; shortened Beat 6 row labels.
+- Web fixes: Switched `Highlight` to `display: inline` with `box-decoration-break: clone`; fixed Framer Motion `?audit=1` zero-duration transitions so opacity settles immediately; added mobile Beat 6 inline legend.
+- Remaining blockers: Beat 6 vertical `0%` rule cutting through row headers; Beat 7 desktop `McCaul` overlapping a blue dot; Beat 7 mobile `Marshall`/`Whitehouse` label placement; final-interactive faint excluded labels.
+- Action: Did not promote (blockers present). Triggered **Phase 4 Escape Cycle #2** + **Polish Round 2**.
+
+### Escape Cycle #2 + Polish Round 2 (`2026-11-24T23:43:00Z`): `90/100` (0 blockers, 6 polish) — **PROMOTED (`best-essay`)**
+- Scores: `legibility: 17`, `hierarchy: 18`, `editorialCraft: 19`, `visualVariety: 19`, `mobileFit: 17`.
+- Data/layout adjustments: Re-ordered Beat 1 winner grid column-by-column so Marshall, Whitehouse, and Pelosi sit on the outer right column with unobstructed leader lines; removed cobalt color overload on Beat 3 trailing dots; tightened mobile Beat 4 House beeswarm height; unified Beat 6 row headers to primary ink and matched `+337.5%` precision; moved Beat 7 desktop `McCaul` to open lower-right whitespace and mobile `Marshall`/`Whitehouse` cleanly above their marks.
+- Web fixes: Added opaque warm-paper backing strips behind Beat 6 row headers so the `0%` rule breaks cleanly; hid excluded annotations & leader lines when Beat 7 filters are active; added crisp dark focal rings on Beat 1 annotated marks; upgraded Beat 7 weighting button to an explicit `Equal-Wt | $-Wt` segmented toggle.
+- Ratchet decision: `90 > 0` with **0 blockers** → **Committed & tagged `best-essay`**. Proceeding to Polish Round 3 (presentation-only `web/` fixes targeting `>= 92/100`).

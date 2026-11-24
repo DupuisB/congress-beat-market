@@ -59,8 +59,8 @@ Popular finance lore insists members of Congress routinely beat the stock market
 - **Visual Delta:** Deduplicated median trade (cobalt ring) vs. mean excess (vermilion dot)
 - **Copy:** Deduplicating amended filings inside the top winners' own trade logs exposes the same skew. Sheldon Whitehouse averages +337.5% across 324 unique buys (inflated to +472.8% in raw feeds by amended duplicates), yet only 34.6% beat SPY and his median trade lost by -90.0% — lifted by 10 NVDA buys (ex-NVDA: +20.9%). Nancy Pelosi (+109.1% mean, 100 unique buys) won on just 53.0% (median +4.6%).
 - **Takeaway:** Deduplicated medians: Whitehouse -90.0% (34.6% win), Pelosi +4.6% (53.0% win).
-- **Desktop Labels (4):** Med +61% -> Mean +565%, Med -90% -> Mean +337% (10 NVDA buys), Med +65% -> Mean +228%, Med +4.6% -> Mean +109%
-- **Mobile Priority-1 Labels (2):** Med -90% vs +337%, Med +4.6% vs +109%
+- **Desktop Labels (4):** Med +61% → Mean +565%, Med -90% → Mean +337.5% (10 NVDA), Med +65% → Mean +228%, Med +4.6% → Mean +109%
+- **Mobile Priority-1 Labels (2):** Med -90% vs +337.5%, Med +4.6% vs +109%
 
 ### Beat 7: Inspect all 127 lawmakers — by dollar volume and weighting. (`beat-07-explore` · `explorer`)
 

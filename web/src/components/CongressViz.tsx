@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import { isAuditMode } from "../lib/audit";
 import type { EntityState, StoryData } from "../schema/story";
 import { MOTION, PALETTE, TONE_COLORS } from "../styles/tokens";
 
@@ -73,6 +74,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
   const safeIndex = Math.max(0, Math.min(activeStep, story.beats.length - 1));
   const beat = story.beats[safeIndex];
   const isExplorer = beat?.layoutType === "explorer";
+  const auditMode = isAuditMode();
 
   const [selectedFilter, setSelectedFilter] = useState<ExplorerFilterId>("all");
   const [weightMode, setWeightMode] = useState<WeightMode>("equal");
@@ -103,17 +105,23 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
   const visibleAnnotations = beat.annotations.filter((ann) =>
     isDesktop ? ann.priority <= 3 : ann.priority === 1,
   );
+  const annotatedEntityIds = new Set(visibleAnnotations.map((a) => a.entityId));
   const visibleTicks = beat.axisTicks.filter((tick) => isDesktop || tick.showOnMobile);
 
+  const isFilterActive =
+    isExplorer && (selectedFilter !== "all" || searchQuery.trim().length > 0);
   const inspectedEntity = inspectedId ? entityMap.get(inspectedId) ?? null : null;
 
   const matchedCount = isExplorer
     ? beat.entities.filter((e) => matchesExplorerFilter(e, selectedFilter, searchQuery)).length
     : beat.entities.length;
 
-  // Locate optional Beat 2 mean-shift guides for drawing the crisp delta bridge
   const oldMeanGuide = beat.guides.find((g) => g.id === "b2-old-mean");
   const newMeanGuide = beat.guides.find((g) => g.id === "b2-new-mean");
+  const subtitleText = isDesktop
+    ? beat.chartSubtitle
+    : (beat.mobileChartSubtitle ?? beat.chartSubtitle);
+  const transitionDuration = auditMode ? 0 : MOTION.durationSec;
 
   return (
     <div
@@ -123,13 +131,11 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
       style={{ backgroundColor: PALETTE.paper }}
     >
       {/* Top hairline graphic header */}
-      <div className="flex items-baseline justify-between gap-3 border-b border-[#DDD7CC] pb-1.5 lg:pb-2">
-        <p className="shrink-0 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.08em] text-[#5C5852] tabular-nums">
+      <div className="flex items-baseline justify-between gap-2 border-b border-[#DDD7CC] pb-1.5 lg:pb-2">
+        <p className="shrink-0 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.07em] text-[#5C5852] tabular-nums">
           {beat.kicker}
         </p>
-        <p className="truncate text-right text-[11px] text-[#5C5852] lg:text-xs">
-          {beat.chartSubtitle}
-        </p>
+        <p className="text-right text-[11px] text-[#5C5852] lg:text-xs">{subtitleText}</p>
       </div>
 
       {/* Main SVG canvas */}
@@ -145,13 +151,13 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
           {beat.layoutType === "trimmed-drop" && (
             <rect
               aria-hidden="true"
-              x={isDesktop ? 674 : 308}
-              y={isDesktop ? 116 : 98}
-              width={isDesktop ? 82 : 38}
-              height={isDesktop ? 298 : 202}
+              x={isDesktop ? 660 : 306}
+              y={isDesktop ? 114 : 98}
+              width={isDesktop ? 110 : 42}
+              height={isDesktop ? 302 : 202}
               rx={4}
               fill={PALETTE.surface}
-              opacity={0.75}
+              opacity={0.8}
             />
           )}
 
@@ -161,7 +167,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
               const start = isDesktop ? guide.desktopStart : guide.mobileStart;
               const end = isDesktop ? guide.desktopEnd : guide.mobileEnd;
               const labelPos = isDesktop ? guide.desktopLabelPos : guide.mobileLabelPos;
-              const labelText = isDesktop ? guide.label : (guide.mobileLabel ?? guide.label);
+              const labelText = isDesktop ? guide.label : guide.mobileLabel;
 
               const stroke =
                 guide.style === "zero"
@@ -201,7 +207,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                         fontVariantNumeric: "tabular-nums",
                         paintOrder: "stroke",
                         stroke: PALETTE.paper,
-                        strokeWidth: 4,
+                        strokeWidth: 4.5,
                         strokeLinejoin: "round",
                       }}
                     >
@@ -247,8 +253,8 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
           {/* Beat 5: Mean vs. Median trade barbell tracks & cobalt median rings */}
           {beat.layoutType === "superstar-anatomy" && (
             <g aria-hidden="true">
-              {/* Quiet legend key at top-right on desktop */}
-              {isDesktop && (
+              {/* Compact inline key on both desktop and mobile */}
+              {isDesktop ? (
                 <g transform="translate(522, 62)">
                   <circle
                     cx={0}
@@ -280,6 +286,38 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     Mean excess
                   </text>
                 </g>
+              ) : (
+                <g transform="translate(184, 46)">
+                  <circle
+                    cx={0}
+                    cy={0}
+                    r={4.2}
+                    fill={PALETTE.paper}
+                    stroke={PALETTE.secondary}
+                    strokeWidth={2}
+                  />
+                  <text
+                    x={9}
+                    y={0}
+                    dominantBaseline="central"
+                    fill={PALETTE.inkMuted}
+                    fontFamily="var(--font-mono)"
+                    fontSize={11.5}
+                  >
+                    Median
+                  </text>
+                  <circle cx={82} cy={0} r={4.2} fill={PALETTE.accent} />
+                  <text
+                    x={91}
+                    y={0}
+                    dominantBaseline="central"
+                    fill={PALETTE.inkMuted}
+                    fontFamily="var(--font-mono)"
+                    fontSize={11.5}
+                  >
+                    Mean
+                  </text>
+                </g>
               )}
 
               {story.superstarProfiles.map((prof) => {
@@ -287,7 +325,6 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 const medPos = isDesktop ? prof.desktopMedian : prof.mobileMedian;
                 return (
                   <g key={`bb-${prof.entityId}`}>
-                    {/* Full row baseline track */}
                     <line
                       x1={isDesktop ? 84 : 24}
                       x2={isDesktop ? 732 : 336}
@@ -297,7 +334,6 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                       strokeWidth={1}
                       opacity={0.7}
                     />
-                    {/* Connecting skew bar from median trade to headline mean */}
                     <line
                       x1={medPos.x}
                       y1={medPos.y}
@@ -308,7 +344,6 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                       strokeLinecap="round"
                       opacity={0.55}
                     />
-                    {/* Cobalt open ring marking exact median trade excess */}
                     <circle
                       cx={medPos.x}
                       cy={medPos.y}
@@ -323,13 +358,37 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
             </g>
           )}
 
-          {/* Lane / group headers */}
+          {/* Beat 5: opaque paper header strips cleanly break the vertical 0% rule behind text */}
+          {beat.layoutType === "superstar-anatomy" && (
+            <g aria-hidden="true">
+              {beat.laneHeaders
+                .filter((lh) => lh.id !== "b5-lh-rest")
+                .map((lh) => {
+                  const pos = isDesktop ? lh.desktop : lh.mobile;
+                  return (
+                    <rect
+                      key={`mask-${lh.id}`}
+                      x={isDesktop ? 76 : 16}
+                      y={pos.y - (isDesktop ? 11 : 10)}
+                      width={isDesktop ? 664 : 328}
+                      height={isDesktop ? 22 : 20}
+                      fill={PALETTE.paper}
+                    />
+                  );
+                })}
+            </g>
+          )}
+
+          {/* Lane / group headers rendered above guides with crisp warm-paper halo */}
           <g aria-hidden="true">
             {beat.laneHeaders.map((lh) => {
               const pos = isDesktop ? lh.desktop : lh.mobile;
               const text = isDesktop ? lh.text : (lh.mobileText ?? lh.text);
-              const fill =
-                lh.tone === "accent"
+              const isSuperstarRow =
+                beat.layoutType === "superstar-anatomy" && lh.id !== "b5-lh-rest";
+              const fill = isSuperstarRow
+                ? PALETTE.ink
+                : lh.tone === "accent"
                   ? PALETTE.accent
                   : lh.tone === "secondary"
                     ? PALETTE.secondary
@@ -345,12 +404,12 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   fontFamily="var(--font-mono)"
                   fontSize={isDesktop ? 11.5 : 12}
                   fontWeight={600}
-                  letterSpacing="0.04em"
+                  letterSpacing="0.03em"
                   style={{
                     fontVariantNumeric: "tabular-nums",
                     paintOrder: "stroke",
                     stroke: PALETTE.paper,
-                    strokeWidth: 4,
+                    strokeWidth: 5.5,
                     strokeLinejoin: "round",
                   }}
                 >
@@ -391,9 +450,16 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 if (!entity) {
                   return null;
                 }
+                const annMatchesFilter =
+                  !isFilterActive || matchesExplorerFilter(entity, selectedFilter, searchQuery);
+                if (!annMatchesFilter) {
+                  return null;
+                }
                 const ePos =
                   isExplorer && weightMode === "dollar"
-                    ? (isDesktop ? (entity.desktopAlt ?? entity.desktop) : (entity.mobileAlt ?? entity.mobile))
+                    ? (isDesktop
+                        ? (entity.desktopAlt ?? entity.desktop)
+                        : (entity.mobileAlt ?? entity.mobile))
                     : isDesktop
                       ? entity.desktop
                       : entity.mobile;
@@ -405,7 +471,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   return null;
                 }
                 const startPad = (isDesktop ? entity.radius : entity.radius * 0.72) + 4;
-                const endPad = 12;
+                const endPad = isDesktop ? 12 : 8;
                 if (dist <= startPad + endPad) {
                   return null;
                 }
@@ -421,7 +487,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     stroke={PALETTE.inkMuted}
                     strokeWidth={1}
                     strokeDasharray="2 2"
-                    opacity={0.48}
+                    opacity={0.52}
                   />
                 );
               })}
@@ -433,25 +499,35 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
             {beat.entities.map((entity) => {
               const pos =
                 isExplorer && weightMode === "dollar"
-                  ? (isDesktop ? (entity.desktopAlt ?? entity.desktop) : (entity.mobileAlt ?? entity.mobile))
+                  ? (isDesktop
+                      ? (entity.desktopAlt ?? entity.desktop)
+                      : (entity.mobileAlt ?? entity.mobile))
                   : isDesktop
                     ? entity.desktop
                     : entity.mobile;
-              const fill = TONE_COLORS[entity.tone];
-              const isFocal = entity.tone !== "neutral";
-              const radius = isDesktop ? entity.radius : Math.max(3.4, entity.radius * 0.7);
               const isMatched =
                 !isExplorer || matchesExplorerFilter(entity, selectedFilter, searchQuery);
               const isInspected = isExplorer && inspectedId === entity.id;
+              const isFocal = entity.tone !== "neutral";
+              const isAnnotated = annotatedEntityIds.has(entity.id);
+              const showDarkRing =
+                isInspected ||
+                (beat.layoutType === "waffle-split" && isAnnotated) ||
+                (!isFocal && isAnnotated);
+
+              // Desaturate excluded marks to quiet warm neutral gray when explorer filter is active
+              const fill =
+                isFilterActive && !isMatched ? PALETTE.neutralMark : TONE_COLORS[entity.tone];
+              const radius = isDesktop ? entity.radius : Math.max(3.2, entity.radius * 0.68);
 
               const computedOpacity = isExplorer
                 ? isInspected
                   ? 1
                   : isMatched
-                    ? selectedFilter === "all" && searchQuery.trim().length === 0
-                      ? entity.opacity
-                      : 0.94
-                    : 0.1
+                    ? isFilterActive
+                      ? 0.94
+                      : entity.opacity
+                    : 0.14
                 : entity.opacity;
 
               return (
@@ -465,7 +541,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     opacity: computedOpacity,
                   }}
                   transition={{
-                    duration: MOTION.durationSec,
+                    duration: transitionDuration,
                     ease: MOTION.easeOut,
                   }}
                   style={{ cursor: isExplorer ? "pointer" : "default" }}
@@ -481,9 +557,31 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     cy={0}
                     r={isInspected ? radius + 2.5 : radius}
                     fill={fill}
-                    stroke={isInspected ? PALETTE.ink : isFocal ? PALETTE.paper : PALETTE.inkMuted}
-                    strokeWidth={isInspected ? 2.2 : isFocal ? 1.5 : 0.75}
-                    strokeOpacity={isInspected || isFocal ? 1 : 0.35}
+                    stroke={
+                      showDarkRing
+                        ? PALETTE.ink
+                        : isFilterActive && !isMatched
+                          ? PALETTE.inkMuted
+                          : isFocal
+                            ? PALETTE.paper
+                            : PALETTE.inkMuted
+                    }
+                    strokeWidth={
+                      isInspected
+                        ? 2.2
+                        : showDarkRing
+                          ? 1.75
+                          : isFocal
+                            ? 1.5
+                            : 0.75
+                    }
+                    strokeOpacity={
+                      isInspected || showDarkRing || isFocal
+                        ? 1
+                        : isFilterActive && !isMatched
+                          ? 0.2
+                          : 0.35
+                    }
                   />
                 </motion.g>
               );
@@ -497,6 +595,12 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
               const text = isDesktop ? ann.text : (ann.mobileText ?? ann.text);
               const anchor = isDesktop ? ann.anchor : (ann.mobileAnchor ?? ann.anchor);
               const entity = entityMap.get(ann.entityId);
+              const annMatchesFilter =
+                !isFilterActive ||
+                (entity ? matchesExplorerFilter(entity, selectedFilter, searchQuery) : true);
+              if (!annMatchesFilter) {
+                return null;
+              }
               const isPrimary = ann.priority === 1;
               const fill =
                 entity && entity.tone !== "neutral" && isPrimary
@@ -566,21 +670,38 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
             </div>
 
             <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                data-interactive-control="weight-toggle"
-                aria-pressed={weightMode === "dollar"}
-                onClick={() =>
-                  setWeightMode((prev) => (prev === "equal" ? "dollar" : "equal"))
-                }
-                className={`cursor-pointer border px-2 py-0.5 font-mono text-[11px] tabular-nums transition-colors ${
-                  weightMode === "dollar"
-                    ? "border-[#1E5AA8] bg-[#1E5AA8] text-[#FAF8F5]"
-                    : "border-[#DDD7CC] bg-[#F1EDE6] text-[#171614] hover:border-[#171614]/50"
-                }`}
+              <div
+                className="inline-flex border border-[#DDD7CC]"
+                role="group"
+                aria-label="Return weighting"
               >
-                {weightMode === "dollar" ? "$-Weighted" : "Equal-Wt"}
-              </button>
+                <button
+                  type="button"
+                  data-interactive-control="weight-equal"
+                  aria-pressed={weightMode === "equal"}
+                  onClick={() => setWeightMode("equal")}
+                  className={`cursor-pointer px-2 py-0.5 font-mono text-[11px] tabular-nums transition-colors ${
+                    weightMode === "equal"
+                      ? "bg-[#171614] text-[#FAF8F5]"
+                      : "bg-[#F1EDE6] text-[#5C5852] hover:text-[#171614]"
+                  }`}
+                >
+                  Equal-Wt
+                </button>
+                <button
+                  type="button"
+                  data-interactive-control="weight-dollar"
+                  aria-pressed={weightMode === "dollar"}
+                  onClick={() => setWeightMode("dollar")}
+                  className={`cursor-pointer border-l border-[#DDD7CC] px-2 py-0.5 font-mono text-[11px] tabular-nums transition-colors ${
+                    weightMode === "dollar"
+                      ? "bg-[#1E5AA8] text-[#FAF8F5]"
+                      : "bg-[#F1EDE6] text-[#5C5852] hover:text-[#171614]"
+                  }`}
+                >
+                  $-Wt
+                </button>
+              </div>
 
               {isDesktop && (
                 <input
@@ -595,7 +716,6 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
             </div>
           </div>
 
-          {/* Editorial inspector bar (desktop shows rich details; mobile stays crisp 1-line) */}
           <div className="flex items-center justify-between gap-2 text-[11px] text-[#5C5852] tabular-nums">
             {inspectedEntity ? (
               <span className="truncate font-mono text-[#171614]">
@@ -606,11 +726,13 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 {formatUsdCompact(inspectedEntity.estVolumeUsd)}
               </span>
             ) : (
-              <span className="truncate">
-                Showing <strong className="font-mono text-[#171614]">{matchedCount}</strong> of{" "}
-                {beat.entities.length} lawmakers (
-                {weightMode === "equal" ? "equal-weighted" : "dollar-weighted"} excess) · Click any
-                dot
+              <span>
+                Showing{" "}
+                <strong className="font-mono text-[#171614]">
+                  {matchedCount}/{beat.entities.length}
+                </strong>{" "}
+                ({weightMode === "equal" ? "equal-wt" : "$-weighted"}) ·{" "}
+                {isDesktop ? "Click any dot" : "Tap dot"}
               </span>
             )}
             {isDesktop && inspectedEntity && (

@@ -169,6 +169,7 @@ export const beatSchema = z
     bodySegments: z.array(textSegmentSchema).min(1),
     takeaway: z.string().min(1),
     chartSubtitle: z.string().min(1),
+    mobileChartSubtitle: z.string().nullable().optional(),
     layoutType: layoutTypeSchema.default("default"),
     guides: z.array(guideLineSchema).default([]),
     axisTicks: z.array(axisTickSchema).default([]),

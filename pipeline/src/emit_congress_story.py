@@ -468,17 +468,19 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
         b0_entities.append(
             make_entity(
                 m=m,
-                radius=8.5 if not is_mo else 9.5,
-                tone="secondary" if is_mo else "neutral",
-                opacity=0.95 if is_mo else 0.78,
+                radius=8.5 if not is_mo else 9.0,
+                tone="neutral",
+                opacity=0.92 if is_mo else 0.76,
                 desktop=PointPosition(x=dx, y=dy),
                 mobile=PointPosition(x=mx_pos, y=my_pos),
             )
         )
-    # Right grid: 39 beat S&P (4 cols x 10 rows, highest outliers at top)
+    # Right grid: 39 beat S&P filled column-by-column (4 cols x 10 rows) so the top 9
+    # winners (Marshall, Whitehouse ... Pelosi) sit directly on the outer right edge (col 3)
+    # with unobstructed horizontal leader lines.
     for idx, m in enumerate(beat_sorted):
-        col = idx % 4
-        row = idx // 4
+        col = idx // 10
+        row = idx % 10
         dx = 478.0 + col * 32.0
         dy = 398.0 - row * 28.0
         mx_pos = 236.0 + col * 20.0
@@ -511,10 +513,8 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 )
             ),
             TextSegment(
-                text=f"{n_trail} lawmakers ({trail_pct:.1f}%) trailed the S&P 500",
-                tone="secondary",
+                text=f"{n_trail} lawmakers ({trail_pct:.1f}%) trailed the S&P 500, while only "
             ),
-            TextSegment(text=", while only "),
             TextSegment(
                 text=f"{n_beat} ({beat_pct:.1f}%) beat it",
                 tone="accent",
@@ -531,6 +531,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             f"median cumulative excess is {median_all:+.1f}%."
         ),
         chartSubtitle="Each circle = 1 lawmaker (>=20 priced stock buys, 2013–2026)",
+        mobileChartSubtitle="127 lawmakers (>=20 buys)",
         layoutType="waffle-split",
         guides=[
             GuideLine(
@@ -576,8 +577,8 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 text=f"Marshall ({by_id['house_rogerw_marshall'].avg_excess:+.0f}%)",
                 mobileText="Marshall +565%",
                 priority=1,
-                desktop=PointPosition(x=622, y=132),
-                mobile=PointPosition(x=340, y=106),
+                desktop=PointPosition(x=622, y=166),
+                mobile=PointPosition(x=340, y=114),
                 anchor="start",
                 mobileAnchor="end",
             ),
@@ -586,8 +587,8 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 entityId="senate_sheldon_whitehouse",
                 text=f"Whitehouse ({by_id['senate_sheldon_whitehouse'].avg_excess:+.0f}%)",
                 priority=2,
-                desktop=PointPosition(x=622, y=170),
-                mobile=PointPosition(x=340, y=140),
+                desktop=PointPosition(x=622, y=206),
+                mobile=PointPosition(x=340, y=148),
                 anchor="start",
             ),
             Annotation(
@@ -595,8 +596,8 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 entityId="house_nancy_pelosi",
                 text=f"Pelosi ({by_id['house_nancy_pelosi'].avg_excess:+.0f}%)",
                 priority=2,
-                desktop=PointPosition(x=622, y=224),
-                mobile=PointPosition(x=340, y=180),
+                desktop=PointPosition(x=622, y=398),
+                mobile=PointPosition(x=340, y=292),
                 anchor="start",
             ),
             Annotation(
@@ -630,13 +631,9 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
     b1_entities = [
         make_entity(
             m=m,
-            radius=7.5 if m.id in top3_ids else (6.0 if m.id == "house_nancy_pelosi" else 5.0),
-            tone=(
-                "accent"
-                if m.id in top3_ids
-                else ("secondary" if m.id == "house_nancy_pelosi" else "neutral")
-            ),
-            opacity=1.0 if (m.id in top3_ids or m.id == "house_nancy_pelosi") else 0.72,
+            radius=7.5 if m.id in top3_ids else (5.8 if m.id == "house_nancy_pelosi" else 5.0),
+            tone="accent" if m.id in top3_ids else "neutral",
+            opacity=1.0 if m.id in top3_ids else (0.92 if m.id == "house_nancy_pelosi" else 0.72),
             desktop=b1_d_pos[m.id],
             mobile=b1_m_pos[m.id],
         )
@@ -678,6 +675,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             "excess-return points."
         ),
         chartSubtitle="Average cumulative excess return vs. S&P 500 (linear scale, %)",
+        mobileChartSubtitle="Excess vs. S&P 500 (linear)",
         layoutType="beeswarm-skew",
         guides=[
             GuideLine(
@@ -807,15 +805,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
         make_entity(
             m=m,
             radius=7.5 if m.id in top3_ids else (6.5 if m.id == "house_nancy_pelosi" else 5.2),
-            tone=(
-                "neutral"
-                if m.id in top3_ids
-                else (
-                    "accent"
-                    if m.avg_excess > 0.0
-                    else ("secondary" if m.avg_excess < -50.0 else "neutral")
-                )
-            ),
+            tone="neutral" if m.id in top3_ids else ("accent" if m.avg_excess > 0.0 else "neutral"),
             opacity=0.28 if m.id in top3_ids else (0.95 if m.avg_excess > 0.0 else 0.72),
             desktop=b2_d_pos[m.id],
             mobile=b2_m_pos[m.id],
@@ -867,6 +857,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
         chartSubtitle=(
             "Zoomed distribution (-160% to +160%) with mean-shift bridge & top 3 set aside"
         ),
+        mobileChartSubtitle="Zoomed (-160% to +160%)",
         layoutType="trimmed-drop",
         guides=[
             GuideLine(
@@ -972,7 +963,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 mobileText="Brooks -150%",
                 priority=1,
                 desktop=PointPosition(x=74, y=384),
-                mobile=PointPosition(x=32, y=276),
+                mobile=PointPosition(x=32, y=296),
                 anchor="start",
                 mobileAnchor="start",
             ),
@@ -1002,9 +993,9 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
         return "house_r"
 
     lane_y_d = {"senate_di": 116.0, "senate_r": 200.0, "house_d": 294.0, "house_r": 388.0}
-    lane_y_m = {"senate_di": 100.0, "senate_r": 162.0, "house_d": 228.0, "house_r": 294.0}
+    lane_y_m = {"senate_di": 102.0, "senate_r": 164.0, "house_d": 230.0, "house_r": 298.0}
     lane_half_d = {"senate_di": 22.0, "senate_r": 24.0, "house_d": 32.0, "house_r": 34.0}
-    lane_half_m = {"senate_di": 12.0, "senate_r": 14.0, "house_d": 18.0, "house_r": 18.0}
+    lane_half_m = {"senate_di": 11.0, "senate_r": 12.0, "house_d": 13.0, "house_r": 13.0}
 
     b3_d_pos: dict[str, PointPosition] = {}
     b3_m_pos: dict[str, PointPosition] = {}
@@ -1113,6 +1104,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             f"and Democrats flip {dem_mean:+.1f}% -> {dem_no_wh_mean:+.1f}%."
         ),
         chartSubtitle="Excess return by chamber at filing × caucus (symlog axis, %)",
+        mobileChartSubtitle="Chamber × caucus (symlog)",
         layoutType="chamber-party",
         guides=[
             GuideLine(
@@ -1181,7 +1173,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 text=f"HOUSE D · {house_d_count}",
                 mobileText=f"HOUSE D ({house_d_count})",
                 desktop=PointPosition(x=48, y=294),
-                mobile=PointPosition(x=24, y=202),
+                mobile=PointPosition(x=24, y=198),
                 anchor="start",
                 tone="neutral",
             ),
@@ -1190,7 +1182,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 text=f"HOUSE R · {house_r_count}",
                 mobileText=f"HOUSE R ({house_r_count})",
                 desktop=PointPosition(x=48, y=388),
-                mobile=PointPosition(x=24, y=270),
+                mobile=PointPosition(x=24, y=266),
                 anchor="start",
                 tone="neutral",
             ),
@@ -1316,6 +1308,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             f"{heavy_beat}/{len(heavy)} hyper-traders ({heavy_beat_pct:.1f}%) beat SPY."
         ),
         chartSubtitle="Priced stock buys (log X) vs. average excess return (symlog Y)",
+        mobileChartSubtitle="Buy count vs. excess",
         layoutType="activity-scatter",
         guides=[
             GuideLine(
@@ -1327,10 +1320,10 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 mobileStart=PointPosition(x=48, y=b4_zero_y_m),
                 mobileEnd=PointPosition(x=338, y=b4_zero_y_m),
                 label="S&P 500 (0%)",
-                mobileLabel="0%",
-                desktopLabelPos=PointPosition(x=84, y=b4_zero_y_d - 11),
-                mobileLabelPos=PointPosition(x=62, y=b4_zero_y_m - 10),
-                labelAnchor="start",
+                mobileLabel=None,
+                desktopLabelPos=PointPosition(x=618, y=b4_zero_y_d - 13),
+                mobileLabelPos=None,
+                labelAnchor="middle",
             ),
             GuideLine(
                 id="b4-200-x",
@@ -1392,7 +1385,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 mobileText="Khanna +5%",
                 priority=1,
                 desktop=PointPosition(x=736, y=224),
-                mobile=PointPosition(x=338, y=166),
+                mobile=PointPosition(x=340, y=166),
                 anchor="end",
                 mobileAnchor="end",
             ),
@@ -1402,8 +1395,8 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 text="Gottheimer · 1,343 (-8%)",
                 mobileText="Gottheimer -8%",
                 priority=1,
-                desktop=PointPosition(x=632, y=312),
-                mobile=PointPosition(x=334, y=248),
+                desktop=PointPosition(x=632, y=318),
+                mobile=PointPosition(x=342, y=288),
                 anchor="middle",
                 mobileAnchor="end",
             ),
@@ -1414,7 +1407,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 mobileText="Whitehouse +473%",
                 priority=1,
                 desktop=PointPosition(x=548, y=104),
-                mobile=PointPosition(x=334, y=82),
+                mobile=PointPosition(x=342, y=114),
                 anchor="start",
                 mobileAnchor="end",
             ),
@@ -1423,9 +1416,9 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 entityId="senate_thomash_tuberville",
                 text="Tuberville · 456 (-34%)",
                 priority=2,
-                desktop=PointPosition(x=462, y=344),
+                desktop=PointPosition(x=358, y=406),
                 mobile=PointPosition(x=180, y=274),
-                anchor="end",
+                anchor="middle",
             ),
             Annotation(
                 id="b4-ann-foxx",
@@ -1555,6 +1548,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             f"win), Pelosi {pel.dedup_median:+.1f}% ({pel.dedup_win_rate:.1f}% win)."
         ),
         chartSubtitle="Deduplicated median trade (cobalt ring) vs. mean excess (vermilion dot)",
+        mobileChartSubtitle="Median trade vs. mean",
         layoutType="superstar-anatomy",
         guides=[
             GuideLine(
@@ -1575,10 +1569,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
         laneHeaders=[
             LaneHeader(
                 id="b5-lh-mar",
-                text=(
-                    f"Roger Marshall (R-KS) · {mar.unique_buys} buys · "
-                    f"{mar.dedup_win_rate:.1f}% win"
-                ),
+                text=f"Roger Marshall (R-KS) · {mar.dedup_win_rate:.1f}% win",
                 mobileText="Marshall (57% win)",
                 desktop=PointPosition(x=84, y=102),
                 mobile=PointPosition(x=24, y=76),
@@ -1587,22 +1578,16 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             ),
             LaneHeader(
                 id="b5-lh-wh",
-                text=(
-                    f"Sheldon Whitehouse (D-RI) · {wh.unique_buys} unique buys · "
-                    f"{wh.dedup_win_rate:.1f}% win"
-                ),
+                text=f"Sheldon Whitehouse (D-RI) · {wh.dedup_win_rate:.1f}% win",
                 mobileText="Whitehouse (35% win)",
                 desktop=PointPosition(x=84, y=172),
                 mobile=PointPosition(x=24, y=130),
                 anchor="start",
-                tone="accent",
+                tone="neutral",
             ),
             LaneHeader(
                 id="b5-lh-com",
-                text=(
-                    f"Barbara Comstock (R-VA) · {com.unique_buys} buys · "
-                    f"{com.dedup_win_rate:.1f}% win"
-                ),
+                text=f"Barbara Comstock (R-VA) · {com.dedup_win_rate:.1f}% win",
                 mobileText="Comstock (68% win)",
                 desktop=PointPosition(x=84, y=242),
                 mobile=PointPosition(x=24, y=184),
@@ -1611,15 +1596,12 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             ),
             LaneHeader(
                 id="b5-lh-pel",
-                text=(
-                    f"Nancy Pelosi (D-CA) · {pel.unique_buys} unique buys · "
-                    f"{pel.dedup_win_rate:.1f}% win"
-                ),
+                text=f"Nancy Pelosi (D-CA) · {pel.dedup_win_rate:.1f}% win",
                 mobileText="Pelosi (53% win)",
                 desktop=PointPosition(x=84, y=312),
                 mobile=PointPosition(x=24, y=238),
                 anchor="start",
-                tone="secondary",
+                tone="neutral",
             ),
             LaneHeader(
                 id="b5-lh-rest",
@@ -1646,7 +1628,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             Annotation(
                 id="b5-ann-mar",
                 entityId="house_rogerw_marshall",
-                text=f"Med {mar.dedup_median:+.0f}% -> Mean {mar.dedup_mean:+.0f}%",
+                text=f"Med {mar.dedup_median:+.0f}% → Mean {mar.dedup_mean:+.0f}%",
                 priority=2,
                 desktop=PointPosition(x=732, y=102),
                 mobile=PointPosition(x=336, y=76),
@@ -1656,10 +1638,10 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 id="b5-ann-wh",
                 entityId="senate_sheldon_whitehouse",
                 text=(
-                    f"Med {wh.dedup_median:+.0f}% -> Mean {wh.dedup_mean:+.0f}% "
-                    f"({wh.unique_nvda} NVDA buys)"
+                    f"Med {wh.dedup_median:+.0f}% → Mean {wh.dedup_mean:+.1f}% "
+                    f"({wh.unique_nvda} NVDA)"
                 ),
-                mobileText=f"Med {wh.dedup_median:+.0f}% vs {wh.dedup_mean:+.0f}%",
+                mobileText=f"Med {wh.dedup_median:+.0f}% vs {wh.dedup_mean:+.1f}%",
                 priority=1,
                 desktop=PointPosition(x=732, y=172),
                 mobile=PointPosition(x=336, y=130),
@@ -1669,7 +1651,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             Annotation(
                 id="b5-ann-com",
                 entityId="house_barbarajhonorable_comstock",
-                text=f"Med {com.dedup_median:+.0f}% -> Mean {com.dedup_mean:+.0f}%",
+                text=f"Med {com.dedup_median:+.0f}% → Mean {com.dedup_mean:+.0f}%",
                 priority=3,
                 desktop=PointPosition(x=732, y=242),
                 mobile=PointPosition(x=336, y=184),
@@ -1678,7 +1660,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
             Annotation(
                 id="b5-ann-pel",
                 entityId="house_nancy_pelosi",
-                text=f"Med {pel.dedup_median:+.1f}% -> Mean {pel.dedup_mean:+.0f}%",
+                text=f"Med {pel.dedup_median:+.1f}% → Mean {pel.dedup_mean:+.0f}%",
                 mobileText=f"Med {pel.dedup_median:+.1f}% vs {pel.dedup_mean:+.0f}%",
                 priority=1,
                 desktop=PointPosition(x=732, y=312),
@@ -1751,6 +1733,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
         ],
         takeaway=f"Filter, search, toggle weighting, or click any of the {n_total} lawmakers.",
         chartSubtitle="Est. trading volume (log USD) vs. excess return · Size = buy count",
+        mobileChartSubtitle="Est. volume vs. excess",
         layoutType="explorer",
         guides=[
             GuideLine(
@@ -1819,7 +1802,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 mobileText="Marshall +565%",
                 priority=1,
                 desktop=PointPosition(x=270, y=72),
-                mobile=PointPosition(x=136, y=56),
+                mobile=PointPosition(x=48, y=44),
                 anchor="start",
                 mobileAnchor="start",
             ),
@@ -1830,7 +1813,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 mobileText="Whitehouse +473%",
                 priority=1,
                 desktop=PointPosition(x=496, y=104),
-                mobile=PointPosition(x=336, y=82),
+                mobile=PointPosition(x=342, y=54),
                 anchor="start",
                 mobileAnchor="end",
             ),
@@ -1839,7 +1822,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 entityId="house_nancy_pelosi",
                 text="Pelosi +93% ($217M)",
                 priority=2,
-                desktop=PointPosition(x=736, y=166),
+                desktop=PointPosition(x=612, y=152),
                 mobile=PointPosition(x=310, y=140),
                 anchor="end",
             ),
@@ -1848,7 +1831,7 @@ def build_story() -> tuple[StoryData, dict[str, object]]:
                 entityId="house_michaelt_mccaul",
                 text="McCaul -3% ($331M)",
                 priority=2,
-                desktop=PointPosition(x=736, y=322),
+                desktop=PointPosition(x=736, y=392),
                 mobile=PointPosition(x=310, y=248),
                 anchor="end",
             ),

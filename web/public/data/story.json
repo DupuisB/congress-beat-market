@@ -137,11 +137,7 @@
           "tone": null
         },
         {
-          "text": "88 lawmakers (69.3%) trailed the S&P 500",
-          "tone": "secondary"
-        },
-        {
-          "text": ", while only ",
+          "text": "88 lawmakers (69.3%) trailed the S&P 500, while only ",
           "tone": null
         },
         {
@@ -155,6 +151,7 @@
       ],
       "takeaway": "Of 127 lawmakers, 88 (69.3%) trailed SPY; median cumulative excess is -11.2%.",
       "chartSubtitle": "Each circle = 1 lawmaker (>=20 priced stock buys, 2013\u20132026)",
+      "mobileChartSubtitle": "127 lawmakers (>=20 buys)",
       "layoutType": "waffle-split",
       "guides": [
         {
@@ -229,9 +226,9 @@
           "label": "Mo Brooks",
           "category": "trail",
           "value": -149.54,
-          "radius": 9.5,
-          "tone": "secondary",
-          "opacity": 0.95,
+          "radius": 9.0,
+          "tone": "neutral",
+          "opacity": 0.92,
           "desktop": {
             "x": 96.0,
             "y": 398.0
@@ -258,7 +255,7 @@
           "value": -136.86,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 398.0
@@ -285,7 +282,7 @@
           "value": -99.93,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 398.0
@@ -312,7 +309,7 @@
           "value": -92.23,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 398.0
@@ -339,7 +336,7 @@
           "value": -91.79,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 398.0
@@ -366,7 +363,7 @@
           "value": -89.56,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 398.0
@@ -393,7 +390,7 @@
           "value": -87.12,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 398.0
@@ -420,7 +417,7 @@
           "value": -83.81,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 398.0
@@ -447,7 +444,7 @@
           "value": -83.34,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 398.0
@@ -474,7 +471,7 @@
           "value": -77.78,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 370.0
@@ -501,7 +498,7 @@
           "value": -74.39,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 370.0
@@ -528,7 +525,7 @@
           "value": -73.24,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 370.0
@@ -555,7 +552,7 @@
           "value": -68.56,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 370.0
@@ -582,7 +579,7 @@
           "value": -66.85,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 370.0
@@ -609,7 +606,7 @@
           "value": -65.87,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 370.0
@@ -636,7 +633,7 @@
           "value": -60.96,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 370.0
@@ -663,7 +660,7 @@
           "value": -60.12,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 370.0
@@ -690,7 +687,7 @@
           "value": -58.92,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 370.0
@@ -717,7 +714,7 @@
           "value": -56.54,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 342.0
@@ -744,7 +741,7 @@
           "value": -56.15,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 342.0
@@ -771,7 +768,7 @@
           "value": -54.8,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 342.0
@@ -798,7 +795,7 @@
           "value": -51.68,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 342.0
@@ -825,7 +822,7 @@
           "value": -49.87,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 342.0
@@ -852,7 +849,7 @@
           "value": -47.84,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 342.0
@@ -879,7 +876,7 @@
           "value": -47.72,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 342.0
@@ -906,7 +903,7 @@
           "value": -43.4,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 342.0
@@ -933,7 +930,7 @@
           "value": -42.04,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 342.0
@@ -960,7 +957,7 @@
           "value": -41.63,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 314.0
@@ -987,7 +984,7 @@
           "value": -40.73,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 314.0
@@ -1014,7 +1011,7 @@
           "value": -40.28,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 314.0
@@ -1041,7 +1038,7 @@
           "value": -40.16,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 314.0
@@ -1068,7 +1065,7 @@
           "value": -39.87,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 314.0
@@ -1095,7 +1092,7 @@
           "value": -38.56,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 314.0
@@ -1122,7 +1119,7 @@
           "value": -38.23,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 314.0
@@ -1149,7 +1146,7 @@
           "value": -37.58,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 314.0
@@ -1176,7 +1173,7 @@
           "value": -37.56,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 314.0
@@ -1203,7 +1200,7 @@
           "value": -37.19,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 286.0
@@ -1230,7 +1227,7 @@
           "value": -36.39,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 286.0
@@ -1257,7 +1254,7 @@
           "value": -36.12,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 286.0
@@ -1284,7 +1281,7 @@
           "value": -34.89,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 286.0
@@ -1311,7 +1308,7 @@
           "value": -34.88,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 286.0
@@ -1338,7 +1335,7 @@
           "value": -34.03,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 286.0
@@ -1365,7 +1362,7 @@
           "value": -31.32,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 286.0
@@ -1392,7 +1389,7 @@
           "value": -30.75,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 286.0
@@ -1419,7 +1416,7 @@
           "value": -29.46,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 286.0
@@ -1446,7 +1443,7 @@
           "value": -29.32,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 258.0
@@ -1473,7 +1470,7 @@
           "value": -28.2,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 258.0
@@ -1500,7 +1497,7 @@
           "value": -26.73,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 258.0
@@ -1527,7 +1524,7 @@
           "value": -24.98,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 258.0
@@ -1554,7 +1551,7 @@
           "value": -24.89,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 258.0
@@ -1581,7 +1578,7 @@
           "value": -23.05,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 258.0
@@ -1608,7 +1605,7 @@
           "value": -22.37,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 258.0
@@ -1635,7 +1632,7 @@
           "value": -22.32,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 258.0
@@ -1662,7 +1659,7 @@
           "value": -21.61,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 258.0
@@ -1689,7 +1686,7 @@
           "value": -21.0,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 230.0
@@ -1716,7 +1713,7 @@
           "value": -19.56,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 230.0
@@ -1743,7 +1740,7 @@
           "value": -18.46,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 230.0
@@ -1770,7 +1767,7 @@
           "value": -15.26,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 230.0
@@ -1797,7 +1794,7 @@
           "value": -15.2,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 230.0
@@ -1824,7 +1821,7 @@
           "value": -13.88,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 230.0
@@ -1851,7 +1848,7 @@
           "value": -12.4,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 230.0
@@ -1878,7 +1875,7 @@
           "value": -12.38,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 230.0
@@ -1905,7 +1902,7 @@
           "value": -12.37,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 230.0
@@ -1932,7 +1929,7 @@
           "value": -11.19,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 202.0
@@ -1959,7 +1956,7 @@
           "value": -11.16,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 202.0
@@ -1986,7 +1983,7 @@
           "value": -11.11,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 202.0
@@ -2013,7 +2010,7 @@
           "value": -9.83,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 202.0
@@ -2040,7 +2037,7 @@
           "value": -9.4,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 202.0
@@ -2067,7 +2064,7 @@
           "value": -8.94,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 202.0
@@ -2094,7 +2091,7 @@
           "value": -8.05,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 202.0
@@ -2121,7 +2118,7 @@
           "value": -6.65,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 202.0
@@ -2148,7 +2145,7 @@
           "value": -6.64,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 202.0
@@ -2175,7 +2172,7 @@
           "value": -6.15,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 174.0
@@ -2202,7 +2199,7 @@
           "value": -5.97,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 174.0
@@ -2229,7 +2226,7 @@
           "value": -5.26,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 174.0
@@ -2256,7 +2253,7 @@
           "value": -5.06,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 174.0
@@ -2283,7 +2280,7 @@
           "value": -4.83,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 174.0
@@ -2310,7 +2307,7 @@
           "value": -4.54,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 174.0
@@ -2337,7 +2334,7 @@
           "value": -4.51,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 174.0
@@ -2364,7 +2361,7 @@
           "value": -4.37,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 306.0,
             "y": 174.0
@@ -2391,7 +2388,7 @@
           "value": -4.24,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 336.0,
             "y": 174.0
@@ -2418,7 +2415,7 @@
           "value": -3.72,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 96.0,
             "y": 146.0
@@ -2445,7 +2442,7 @@
           "value": -3.41,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 126.0,
             "y": 146.0
@@ -2472,7 +2469,7 @@
           "value": -2.86,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 156.0,
             "y": 146.0
@@ -2499,7 +2496,7 @@
           "value": -2.71,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 186.0,
             "y": 146.0
@@ -2526,7 +2523,7 @@
           "value": -2.08,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 216.0,
             "y": 146.0
@@ -2553,7 +2550,7 @@
           "value": -1.66,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 246.0,
             "y": 146.0
@@ -2580,7 +2577,7 @@
           "value": -0.55,
           "radius": 8.5,
           "tone": "neutral",
-          "opacity": 0.78,
+          "opacity": 0.76,
           "desktop": {
             "x": 276.0,
             "y": 146.0
@@ -2636,12 +2633,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 398.0
+            "x": 478.0,
+            "y": 370.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 292.0
+            "x": 236.0,
+            "y": 274.0
           },
           "party": "R",
           "chamber": "house",
@@ -2663,12 +2660,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 398.0
+            "x": 478.0,
+            "y": 342.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 292.0
+            "x": 236.0,
+            "y": 256.0
           },
           "party": "R",
           "chamber": "house",
@@ -2690,12 +2687,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 398.0
+            "x": 478.0,
+            "y": 314.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 292.0
+            "x": 236.0,
+            "y": 238.0
           },
           "party": "R",
           "chamber": "house",
@@ -2718,11 +2715,11 @@
           "opacity": 0.85,
           "desktop": {
             "x": 478.0,
-            "y": 370.0
+            "y": 286.0
           },
           "mobile": {
             "x": 236.0,
-            "y": 274.0
+            "y": 220.0
           },
           "party": "R",
           "chamber": "house",
@@ -2744,12 +2741,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 370.0
+            "x": 478.0,
+            "y": 258.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 274.0
+            "x": 236.0,
+            "y": 202.0
           },
           "party": "D",
           "chamber": "house",
@@ -2771,12 +2768,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 370.0
+            "x": 478.0,
+            "y": 230.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 274.0
+            "x": 236.0,
+            "y": 184.0
           },
           "party": "R",
           "chamber": "house",
@@ -2798,12 +2795,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 370.0
+            "x": 478.0,
+            "y": 202.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 274.0
+            "x": 236.0,
+            "y": 166.0
           },
           "party": "D",
           "chamber": "house",
@@ -2826,11 +2823,11 @@
           "opacity": 0.85,
           "desktop": {
             "x": 478.0,
-            "y": 342.0
+            "y": 174.0
           },
           "mobile": {
             "x": 236.0,
-            "y": 256.0
+            "y": 148.0
           },
           "party": "R",
           "chamber": "house",
@@ -2852,12 +2849,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 342.0
+            "x": 478.0,
+            "y": 146.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 256.0
+            "x": 236.0,
+            "y": 130.0
           },
           "party": "R",
           "chamber": "house",
@@ -2879,12 +2876,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 342.0
+            "x": 510.0,
+            "y": 398.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 256.0
+            "x": 256.0,
+            "y": 292.0
           },
           "party": "R",
           "chamber": "house",
@@ -2906,12 +2903,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 342.0
+            "x": 510.0,
+            "y": 370.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 256.0
+            "x": 256.0,
+            "y": 274.0
           },
           "party": "R",
           "chamber": "house",
@@ -2933,12 +2930,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 478.0,
-            "y": 314.0
+            "x": 510.0,
+            "y": 342.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 238.0
+            "x": 256.0,
+            "y": 256.0
           },
           "party": "R",
           "chamber": "house",
@@ -2987,12 +2984,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 314.0
+            "x": 510.0,
+            "y": 286.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 238.0
+            "x": 256.0,
+            "y": 220.0
           },
           "party": "R",
           "chamber": "house",
@@ -3014,12 +3011,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 314.0
+            "x": 510.0,
+            "y": 258.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 238.0
+            "x": 256.0,
+            "y": 202.0
           },
           "party": "R",
           "chamber": "senate",
@@ -3041,12 +3038,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 478.0,
-            "y": 286.0
+            "x": 510.0,
+            "y": 230.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 220.0
+            "x": 256.0,
+            "y": 184.0
           },
           "party": "D",
           "chamber": "house",
@@ -3069,11 +3066,11 @@
           "opacity": 0.85,
           "desktop": {
             "x": 510.0,
-            "y": 286.0
+            "y": 202.0
           },
           "mobile": {
             "x": 256.0,
-            "y": 220.0
+            "y": 166.0
           },
           "party": "D",
           "chamber": "house",
@@ -3095,12 +3092,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 286.0
+            "x": 510.0,
+            "y": 174.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 220.0
+            "x": 256.0,
+            "y": 148.0
           },
           "party": "R",
           "chamber": "house",
@@ -3122,12 +3119,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 286.0
+            "x": 510.0,
+            "y": 146.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 220.0
+            "x": 256.0,
+            "y": 130.0
           },
           "party": "R",
           "chamber": "house",
@@ -3149,12 +3146,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 478.0,
-            "y": 258.0
+            "x": 542.0,
+            "y": 398.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 202.0
+            "x": 276.0,
+            "y": 292.0
           },
           "party": "R",
           "chamber": "house",
@@ -3176,12 +3173,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 258.0
+            "x": 542.0,
+            "y": 370.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 202.0
+            "x": 276.0,
+            "y": 274.0
           },
           "party": "R",
           "chamber": "house",
@@ -3204,11 +3201,11 @@
           "opacity": 0.85,
           "desktop": {
             "x": 542.0,
-            "y": 258.0
+            "y": 342.0
           },
           "mobile": {
             "x": 276.0,
-            "y": 202.0
+            "y": 256.0
           },
           "party": "D",
           "chamber": "house",
@@ -3230,12 +3227,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 258.0
+            "x": 542.0,
+            "y": 314.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 202.0
+            "x": 276.0,
+            "y": 238.0
           },
           "party": "D",
           "chamber": "house",
@@ -3257,12 +3254,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 478.0,
-            "y": 230.0
+            "x": 542.0,
+            "y": 286.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 184.0
+            "x": 276.0,
+            "y": 220.0
           },
           "party": "D",
           "chamber": "house",
@@ -3284,12 +3281,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 230.0
+            "x": 542.0,
+            "y": 258.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 184.0
+            "x": 276.0,
+            "y": 202.0
           },
           "party": "D",
           "chamber": "house",
@@ -3338,12 +3335,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 574.0,
-            "y": 230.0
+            "x": 542.0,
+            "y": 202.0
           },
           "mobile": {
-            "x": 296.0,
-            "y": 184.0
+            "x": 276.0,
+            "y": 166.0
           },
           "party": "R",
           "chamber": "house",
@@ -3365,12 +3362,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 478.0,
-            "y": 202.0
+            "x": 542.0,
+            "y": 174.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 166.0
+            "x": 276.0,
+            "y": 148.0
           },
           "party": "R",
           "chamber": "house",
@@ -3392,12 +3389,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 202.0
+            "x": 542.0,
+            "y": 146.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 166.0
+            "x": 276.0,
+            "y": 130.0
           },
           "party": "R",
           "chamber": "house",
@@ -3419,12 +3416,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 202.0
+            "x": 574.0,
+            "y": 398.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 166.0
+            "x": 296.0,
+            "y": 292.0
           },
           "party": "D",
           "chamber": "house",
@@ -3447,11 +3444,11 @@
           "opacity": 0.85,
           "desktop": {
             "x": 574.0,
-            "y": 202.0
+            "y": 370.0
           },
           "mobile": {
             "x": 296.0,
-            "y": 166.0
+            "y": 274.0
           },
           "party": "D",
           "chamber": "senate",
@@ -3473,12 +3470,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 478.0,
-            "y": 174.0
+            "x": 574.0,
+            "y": 342.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 148.0
+            "x": 296.0,
+            "y": 256.0
           },
           "party": "D",
           "chamber": "house",
@@ -3500,12 +3497,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 510.0,
-            "y": 174.0
+            "x": 574.0,
+            "y": 314.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 148.0
+            "x": 296.0,
+            "y": 238.0
           },
           "party": "D",
           "chamber": "senate",
@@ -3527,12 +3524,12 @@
           "tone": "accent",
           "opacity": 0.85,
           "desktop": {
-            "x": 542.0,
-            "y": 174.0
+            "x": 574.0,
+            "y": 286.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 148.0
+            "x": 296.0,
+            "y": 220.0
           },
           "party": "D",
           "chamber": "house",
@@ -3555,11 +3552,11 @@
           "opacity": 0.85,
           "desktop": {
             "x": 574.0,
-            "y": 174.0
+            "y": 258.0
           },
           "mobile": {
             "x": 296.0,
-            "y": 148.0
+            "y": 202.0
           },
           "party": "D",
           "chamber": "house",
@@ -3581,12 +3578,12 @@
           "tone": "accent",
           "opacity": 1.0,
           "desktop": {
-            "x": 478.0,
-            "y": 146.0
+            "x": 574.0,
+            "y": 230.0
           },
           "mobile": {
-            "x": 236.0,
-            "y": 130.0
+            "x": 296.0,
+            "y": 184.0
           },
           "party": "R",
           "chamber": "house",
@@ -3608,12 +3605,12 @@
           "tone": "accent",
           "opacity": 1.0,
           "desktop": {
-            "x": 510.0,
-            "y": 146.0
+            "x": 574.0,
+            "y": 202.0
           },
           "mobile": {
-            "x": 256.0,
-            "y": 130.0
+            "x": 296.0,
+            "y": 166.0
           },
           "party": "D",
           "chamber": "senate",
@@ -3635,12 +3632,12 @@
           "tone": "accent",
           "opacity": 1.0,
           "desktop": {
-            "x": 542.0,
-            "y": 146.0
+            "x": 574.0,
+            "y": 174.0
           },
           "mobile": {
-            "x": 276.0,
-            "y": 130.0
+            "x": 296.0,
+            "y": 148.0
           },
           "party": "R",
           "chamber": "house",
@@ -3663,11 +3660,11 @@
           "priority": 1,
           "desktop": {
             "x": 622.0,
-            "y": 132.0
+            "y": 166.0
           },
           "mobile": {
             "x": 340.0,
-            "y": 106.0
+            "y": 114.0
           },
           "anchor": "start",
           "mobileAnchor": "end"
@@ -3680,11 +3677,11 @@
           "priority": 2,
           "desktop": {
             "x": 622.0,
-            "y": 170.0
+            "y": 206.0
           },
           "mobile": {
             "x": 340.0,
-            "y": 140.0
+            "y": 148.0
           },
           "anchor": "start",
           "mobileAnchor": null
@@ -3697,11 +3694,11 @@
           "priority": 2,
           "desktop": {
             "x": 622.0,
-            "y": 224.0
+            "y": 398.0
           },
           "mobile": {
             "x": 340.0,
-            "y": 180.0
+            "y": 292.0
           },
           "anchor": "start",
           "mobileAnchor": null
@@ -3746,6 +3743,7 @@
       ],
       "takeaway": "Top 3 outliers (2.4% of Congress) hold 47.4% of all positive excess-return points.",
       "chartSubtitle": "Average cumulative excess return vs. S&P 500 (linear scale, %)",
+      "mobileChartSubtitle": "Excess vs. S&P 500 (linear)",
       "layoutType": "beeswarm-skew",
       "guides": [
         {
@@ -7098,9 +7096,9 @@
           "label": "Nancy Pelosi",
           "category": "beat",
           "value": 93.39,
-          "radius": 6.0,
-          "tone": "secondary",
-          "opacity": 1.0,
+          "radius": 5.8,
+          "tone": "neutral",
+          "opacity": 0.92,
           "desktop": {
             "x": 288.1,
             "y": 258.9
@@ -7454,6 +7452,7 @@
       ],
       "takeaway": "Dropping 3 of 127 lawmakers cuts the mean from -3.7% to -14.0% (-10.3 pp).",
       "chartSubtitle": "Zoomed distribution (-160% to +160%) with mean-shift bridge & top 3 set aside",
+      "mobileChartSubtitle": "Zoomed (-160% to +160%)",
       "layoutType": "trimmed-drop",
       "guides": [
         {
@@ -7704,7 +7703,7 @@
           "category": "trail",
           "value": -149.54,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 82.4,
@@ -7731,7 +7730,7 @@
           "category": "trail",
           "value": -136.86,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 104.8,
@@ -7758,7 +7757,7 @@
           "category": "trail",
           "value": -99.93,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 169.9,
@@ -7785,7 +7784,7 @@
           "category": "trail",
           "value": -92.23,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 183.4,
@@ -7812,7 +7811,7 @@
           "category": "trail",
           "value": -91.79,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 184.2,
@@ -7839,7 +7838,7 @@
           "category": "trail",
           "value": -89.56,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 188.2,
@@ -7866,7 +7865,7 @@
           "category": "trail",
           "value": -87.12,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 192.4,
@@ -7893,7 +7892,7 @@
           "category": "trail",
           "value": -83.81,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 198.3,
@@ -7920,7 +7919,7 @@
           "category": "trail",
           "value": -83.34,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 199.1,
@@ -7947,7 +7946,7 @@
           "category": "trail",
           "value": -77.78,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 208.9,
@@ -7974,7 +7973,7 @@
           "category": "trail",
           "value": -74.39,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 214.9,
@@ -8001,7 +8000,7 @@
           "category": "trail",
           "value": -73.24,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 216.9,
@@ -8028,7 +8027,7 @@
           "category": "trail",
           "value": -68.56,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 225.2,
@@ -8055,7 +8054,7 @@
           "category": "trail",
           "value": -66.85,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 228.2,
@@ -8082,7 +8081,7 @@
           "category": "trail",
           "value": -65.87,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 229.9,
@@ -8109,7 +8108,7 @@
           "category": "trail",
           "value": -60.96,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 238.6,
@@ -8136,7 +8135,7 @@
           "category": "trail",
           "value": -60.12,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 240.0,
@@ -8163,7 +8162,7 @@
           "category": "trail",
           "value": -58.92,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 242.1,
@@ -8190,7 +8189,7 @@
           "category": "trail",
           "value": -56.54,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 246.3,
@@ -8217,7 +8216,7 @@
           "category": "trail",
           "value": -56.15,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 247.0,
@@ -8244,7 +8243,7 @@
           "category": "trail",
           "value": -54.8,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 249.4,
@@ -8271,7 +8270,7 @@
           "category": "trail",
           "value": -51.68,
           "radius": 5.2,
-          "tone": "secondary",
+          "tone": "neutral",
           "opacity": 0.72,
           "desktop": {
             "x": 254.9,
@@ -11175,7 +11174,7 @@
           },
           "mobile": {
             "x": 32.0,
-            "y": 276.0
+            "y": 296.0
           },
           "anchor": "start",
           "mobileAnchor": "start"
@@ -11236,6 +11235,7 @@
       ],
       "takeaway": "Ex-Whitehouse, Senate mean flips +9.0% -> -16.8% and Democrats flip +2.9% -> -6.1%.",
       "chartSubtitle": "Excess return by chamber at filing \u00d7 caucus (symlog axis, %)",
+      "mobileChartSubtitle": "Chamber \u00d7 caucus (symlog)",
       "layoutType": "chamber-party",
       "guides": [
         {
@@ -11482,7 +11482,7 @@
           },
           "mobile": {
             "x": 24.0,
-            "y": 202.0
+            "y": 198.0
           },
           "anchor": "start",
           "tone": "neutral"
@@ -11497,7 +11497,7 @@
           },
           "mobile": {
             "x": 24.0,
-            "y": 270.0
+            "y": 266.0
           },
           "anchor": "start",
           "tone": "neutral"
@@ -11518,7 +11518,7 @@
           },
           "mobile": {
             "x": 35.9,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -11545,7 +11545,7 @@
           },
           "mobile": {
             "x": 41.0,
-            "y": 288.2
+            "y": 292.2
           },
           "party": "R",
           "chamber": "house",
@@ -11572,7 +11572,7 @@
           },
           "mobile": {
             "x": 58.5,
-            "y": 100.0
+            "y": 102.0
           },
           "party": "D",
           "chamber": "senate",
@@ -11599,7 +11599,7 @@
           },
           "mobile": {
             "x": 62.8,
-            "y": 93.5
+            "y": 95.5
           },
           "party": "D",
           "chamber": "senate",
@@ -11626,7 +11626,7 @@
           },
           "mobile": {
             "x": 63.0,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -11653,7 +11653,7 @@
           },
           "mobile": {
             "x": 64.3,
-            "y": 286.4
+            "y": 290.4
           },
           "party": "R",
           "chamber": "house",
@@ -11680,7 +11680,7 @@
           },
           "mobile": {
             "x": 65.8,
-            "y": 301.2
+            "y": 305.2
           },
           "party": "R",
           "chamber": "house",
@@ -11707,7 +11707,7 @@
           },
           "mobile": {
             "x": 67.8,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -11734,7 +11734,7 @@
           },
           "mobile": {
             "x": 68.1,
-            "y": 279.6
+            "y": 285.0
           },
           "party": "R",
           "chamber": "house",
@@ -11761,7 +11761,7 @@
           },
           "mobile": {
             "x": 71.6,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -11788,7 +11788,7 @@
           },
           "mobile": {
             "x": 73.8,
-            "y": 286.6
+            "y": 290.6
           },
           "party": "R",
           "chamber": "house",
@@ -11815,7 +11815,7 @@
           },
           "mobile": {
             "x": 74.6,
-            "y": 301.1
+            "y": 305.1
           },
           "party": "R",
           "chamber": "house",
@@ -11842,7 +11842,7 @@
           },
           "mobile": {
             "x": 77.8,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -11869,7 +11869,7 @@
           },
           "mobile": {
             "x": 79.0,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -11896,7 +11896,7 @@
           },
           "mobile": {
             "x": 79.7,
-            "y": 220.3
+            "y": 222.3
           },
           "party": "D",
           "chamber": "house",
@@ -11923,7 +11923,7 @@
           },
           "mobile": {
             "x": 83.3,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -11950,7 +11950,7 @@
           },
           "mobile": {
             "x": 83.9,
-            "y": 100.0
+            "y": 102.0
           },
           "party": "D",
           "chamber": "senate",
@@ -11977,7 +11977,7 @@
           },
           "mobile": {
             "x": 84.8,
-            "y": 233.1
+            "y": 235.1
           },
           "party": "D",
           "chamber": "house",
@@ -12004,7 +12004,7 @@
           },
           "mobile": {
             "x": 86.7,
-            "y": 287.0
+            "y": 291.0
           },
           "party": "R",
           "chamber": "house",
@@ -12031,7 +12031,7 @@
           },
           "mobile": {
             "x": 87.0,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -12058,7 +12058,7 @@
           },
           "mobile": {
             "x": 88.0,
-            "y": 300.1
+            "y": 304.1
           },
           "party": "R",
           "chamber": "house",
@@ -12085,7 +12085,7 @@
           },
           "mobile": {
             "x": 90.5,
-            "y": 155.1
+            "y": 157.1
           },
           "party": "R",
           "chamber": "senate",
@@ -12112,7 +12112,7 @@
           },
           "mobile": {
             "x": 92.0,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -12139,7 +12139,7 @@
           },
           "mobile": {
             "x": 93.7,
-            "y": 220.4
+            "y": 222.4
           },
           "party": "D",
           "chamber": "house",
@@ -12166,7 +12166,7 @@
           },
           "mobile": {
             "x": 93.8,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -12193,7 +12193,7 @@
           },
           "mobile": {
             "x": 97.6,
-            "y": 287.2
+            "y": 291.2
           },
           "party": "R",
           "chamber": "house",
@@ -12220,7 +12220,7 @@
           },
           "mobile": {
             "x": 98.8,
-            "y": 231.8
+            "y": 233.8
           },
           "party": "D",
           "chamber": "house",
@@ -12247,7 +12247,7 @@
           },
           "mobile": {
             "x": 99.1,
-            "y": 239.5
+            "y": 241.5
           },
           "party": "D",
           "chamber": "house",
@@ -12274,7 +12274,7 @@
           },
           "mobile": {
             "x": 99.9,
-            "y": 215.8
+            "y": 217.8
           },
           "party": "D",
           "chamber": "house",
@@ -12301,7 +12301,7 @@
           },
           "mobile": {
             "x": 100.3,
-            "y": 224.4
+            "y": 226.1
           },
           "party": "D",
           "chamber": "house",
@@ -12328,7 +12328,7 @@
           },
           "mobile": {
             "x": 100.4,
-            "y": 246.0
+            "y": 243.0
           },
           "party": "D",
           "chamber": "house",
@@ -12355,7 +12355,7 @@
           },
           "mobile": {
             "x": 100.7,
-            "y": 297.5
+            "y": 301.5
           },
           "party": "R",
           "chamber": "house",
@@ -12382,7 +12382,7 @@
           },
           "mobile": {
             "x": 101.9,
-            "y": 305.2
+            "y": 309.2
           },
           "party": "R",
           "chamber": "house",
@@ -12409,7 +12409,7 @@
           },
           "mobile": {
             "x": 102.2,
-            "y": 210.0
+            "y": 234.6
           },
           "party": "D",
           "chamber": "house",
@@ -12436,7 +12436,7 @@
           },
           "mobile": {
             "x": 102.8,
-            "y": 281.5
+            "y": 285.5
           },
           "party": "R",
           "chamber": "house",
@@ -12463,7 +12463,7 @@
           },
           "mobile": {
             "x": 102.8,
-            "y": 232.5
+            "y": 217.0
           },
           "party": "D",
           "chamber": "house",
@@ -12490,7 +12490,7 @@
           },
           "mobile": {
             "x": 103.2,
-            "y": 312.0
+            "y": 294.1
           },
           "party": "R",
           "chamber": "house",
@@ -12517,7 +12517,7 @@
           },
           "mobile": {
             "x": 103.9,
-            "y": 218.1
+            "y": 224.8
           },
           "party": "D",
           "chamber": "house",
@@ -12544,7 +12544,7 @@
           },
           "mobile": {
             "x": 104.2,
-            "y": 239.7
+            "y": 243.0
           },
           "party": "D",
           "chamber": "house",
@@ -12571,7 +12571,7 @@
           },
           "mobile": {
             "x": 105.3,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -12598,7 +12598,7 @@
           },
           "mobile": {
             "x": 105.3,
-            "y": 225.3
+            "y": 231.9
           },
           "party": "D",
           "chamber": "house",
@@ -12625,7 +12625,7 @@
           },
           "mobile": {
             "x": 106.1,
-            "y": 154.3
+            "y": 156.3
           },
           "party": "R",
           "chamber": "senate",
@@ -12652,7 +12652,7 @@
           },
           "mobile": {
             "x": 108.7,
-            "y": 168.9
+            "y": 170.9
           },
           "party": "R",
           "chamber": "senate",
@@ -12679,7 +12679,7 @@
           },
           "mobile": {
             "x": 109.3,
-            "y": 294.0
+            "y": 298.8
           },
           "party": "R",
           "chamber": "house",
@@ -12706,7 +12706,7 @@
           },
           "mobile": {
             "x": 110.6,
-            "y": 286.4
+            "y": 291.2
           },
           "party": "R",
           "chamber": "house",
@@ -12733,7 +12733,7 @@
           },
           "mobile": {
             "x": 110.7,
-            "y": 301.6
+            "y": 306.4
           },
           "party": "R",
           "chamber": "house",
@@ -12760,7 +12760,7 @@
           },
           "mobile": {
             "x": 111.8,
-            "y": 229.5
+            "y": 227.7
           },
           "party": "D",
           "chamber": "house",
@@ -12787,7 +12787,7 @@
           },
           "mobile": {
             "x": 113.3,
-            "y": 279.1
+            "y": 285.0
           },
           "party": "R",
           "chamber": "house",
@@ -12814,7 +12814,7 @@
           },
           "mobile": {
             "x": 115.1,
-            "y": 308.0
+            "y": 311.0
           },
           "party": "R",
           "chamber": "house",
@@ -12841,7 +12841,7 @@
           },
           "mobile": {
             "x": 115.1,
-            "y": 222.5
+            "y": 234.7
           },
           "party": "D",
           "chamber": "house",
@@ -12868,7 +12868,7 @@
           },
           "mobile": {
             "x": 117.0,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -12895,7 +12895,7 @@
           },
           "mobile": {
             "x": 117.7,
-            "y": 285.9
+            "y": 290.2
           },
           "party": "R",
           "chamber": "house",
@@ -12922,7 +12922,7 @@
           },
           "mobile": {
             "x": 117.8,
-            "y": 234.4
+            "y": 222.8
           },
           "party": "D",
           "chamber": "house",
@@ -12949,7 +12949,7 @@
           },
           "mobile": {
             "x": 118.5,
-            "y": 301.2
+            "y": 305.1
           },
           "party": "R",
           "chamber": "house",
@@ -12976,7 +12976,7 @@
           },
           "mobile": {
             "x": 119.2,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -13003,7 +13003,7 @@
           },
           "mobile": {
             "x": 120.7,
-            "y": 217.1
+            "y": 240.1
           },
           "party": "D",
           "chamber": "house",
@@ -13030,7 +13030,7 @@
           },
           "mobile": {
             "x": 121.8,
-            "y": 227.8
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -13057,7 +13057,7 @@
           },
           "mobile": {
             "x": 125.3,
-            "y": 100.0
+            "y": 102.0
           },
           "party": "I",
           "chamber": "senate",
@@ -13084,7 +13084,7 @@
           },
           "mobile": {
             "x": 125.3,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -13111,7 +13111,7 @@
           },
           "mobile": {
             "x": 126.8,
-            "y": 286.4
+            "y": 290.4
           },
           "party": "R",
           "chamber": "house",
@@ -13138,7 +13138,7 @@
           },
           "mobile": {
             "x": 128.4,
-            "y": 301.1
+            "y": 305.1
           },
           "party": "R",
           "chamber": "house",
@@ -13165,7 +13165,7 @@
           },
           "mobile": {
             "x": 128.4,
-            "y": 231.9
+            "y": 225.9
           },
           "party": "D",
           "chamber": "house",
@@ -13192,7 +13192,7 @@
           },
           "mobile": {
             "x": 128.4,
-            "y": 223.7
+            "y": 234.1
           },
           "party": "D",
           "chamber": "house",
@@ -13219,7 +13219,7 @@
           },
           "mobile": {
             "x": 129.7,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -13246,7 +13246,7 @@
           },
           "mobile": {
             "x": 129.7,
-            "y": 239.6
+            "y": 241.7
           },
           "party": "D",
           "chamber": "house",
@@ -13273,7 +13273,7 @@
           },
           "mobile": {
             "x": 129.8,
-            "y": 216.1
+            "y": 218.3
           },
           "party": "D",
           "chamber": "house",
@@ -13300,7 +13300,7 @@
           },
           "mobile": {
             "x": 131.2,
-            "y": 280.0
+            "y": 285.0
           },
           "party": "R",
           "chamber": "house",
@@ -13327,7 +13327,7 @@
           },
           "mobile": {
             "x": 131.7,
-            "y": 308.1
+            "y": 311.0
           },
           "party": "R",
           "chamber": "house",
@@ -13354,7 +13354,7 @@
           },
           "mobile": {
             "x": 132.2,
-            "y": 246.0
+            "y": 232.6
           },
           "party": "D",
           "chamber": "house",
@@ -13381,7 +13381,7 @@
           },
           "mobile": {
             "x": 133.1,
-            "y": 210.0
+            "y": 224.8
           },
           "party": "D",
           "chamber": "house",
@@ -13408,7 +13408,7 @@
           },
           "mobile": {
             "x": 134.7,
-            "y": 228.0
+            "y": 239.8
           },
           "party": "D",
           "chamber": "house",
@@ -13435,7 +13435,7 @@
           },
           "mobile": {
             "x": 134.7,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -13462,7 +13462,7 @@
           },
           "mobile": {
             "x": 135.3,
-            "y": 219.9
+            "y": 217.0
           },
           "party": "D",
           "chamber": "house",
@@ -13489,7 +13489,7 @@
           },
           "mobile": {
             "x": 135.5,
-            "y": 235.2
+            "y": 231.9
           },
           "party": "D",
           "chamber": "house",
@@ -13516,7 +13516,7 @@
           },
           "mobile": {
             "x": 136.2,
-            "y": 243.3
+            "y": 224.2
           },
           "party": "D",
           "chamber": "house",
@@ -13543,7 +13543,7 @@
           },
           "mobile": {
             "x": 136.5,
-            "y": 211.8
+            "y": 243.0
           },
           "party": "D",
           "chamber": "house",
@@ -13570,7 +13570,7 @@
           },
           "mobile": {
             "x": 136.7,
-            "y": 158.8
+            "y": 160.8
           },
           "party": "R",
           "chamber": "senate",
@@ -13597,7 +13597,7 @@
           },
           "mobile": {
             "x": 137.1,
-            "y": 286.6
+            "y": 290.6
           },
           "party": "R",
           "chamber": "house",
@@ -13624,7 +13624,7 @@
           },
           "mobile": {
             "x": 137.1,
-            "y": 166.6
+            "y": 168.6
           },
           "party": "R",
           "chamber": "senate",
@@ -13651,7 +13651,7 @@
           },
           "mobile": {
             "x": 137.2,
-            "y": 301.3
+            "y": 305.3
           },
           "party": "R",
           "chamber": "house",
@@ -13678,7 +13678,7 @@
           },
           "mobile": {
             "x": 137.4,
-            "y": 276.0
+            "y": 285.0
           },
           "party": "R",
           "chamber": "house",
@@ -13705,7 +13705,7 @@
           },
           "mobile": {
             "x": 138.0,
-            "y": 227.1
+            "y": 217.0
           },
           "party": "D",
           "chamber": "house",
@@ -13732,7 +13732,7 @@
           },
           "mobile": {
             "x": 138.3,
-            "y": 219.0
+            "y": 235.2
           },
           "party": "D",
           "chamber": "house",
@@ -13759,7 +13759,7 @@
           },
           "mobile": {
             "x": 138.9,
-            "y": 236.1
+            "y": 227.4
           },
           "party": "D",
           "chamber": "house",
@@ -13786,7 +13786,7 @@
           },
           "mobile": {
             "x": 139.1,
-            "y": 310.2
+            "y": 311.0
           },
           "party": "R",
           "chamber": "house",
@@ -13813,7 +13813,7 @@
           },
           "mobile": {
             "x": 139.8,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -13840,7 +13840,7 @@
           },
           "mobile": {
             "x": 140.3,
-            "y": 283.2
+            "y": 292.1
           },
           "party": "R",
           "chamber": "house",
@@ -13867,7 +13867,7 @@
           },
           "mobile": {
             "x": 141.5,
-            "y": 303.0
+            "y": 285.0
           },
           "party": "R",
           "chamber": "house",
@@ -13894,7 +13894,7 @@
           },
           "mobile": {
             "x": 142.8,
-            "y": 276.0
+            "y": 304.5
           },
           "party": "R",
           "chamber": "house",
@@ -13921,7 +13921,7 @@
           },
           "mobile": {
             "x": 143.0,
-            "y": 312.0
+            "y": 311.0
           },
           "party": "R",
           "chamber": "house",
@@ -13948,7 +13948,7 @@
           },
           "mobile": {
             "x": 144.0,
-            "y": 289.5
+            "y": 296.7
           },
           "party": "R",
           "chamber": "house",
@@ -13975,7 +13975,7 @@
           },
           "mobile": {
             "x": 145.1,
-            "y": 297.6
+            "y": 286.3
           },
           "party": "R",
           "chamber": "house",
@@ -14002,7 +14002,7 @@
           },
           "mobile": {
             "x": 146.5,
-            "y": 282.3
+            "y": 303.9
           },
           "party": "R",
           "chamber": "house",
@@ -14029,7 +14029,7 @@
           },
           "mobile": {
             "x": 147.7,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -14056,7 +14056,7 @@
           },
           "mobile": {
             "x": 148.6,
-            "y": 306.2
+            "y": 292.8
           },
           "party": "R",
           "chamber": "house",
@@ -14083,7 +14083,7 @@
           },
           "mobile": {
             "x": 149.5,
-            "y": 220.5
+            "y": 222.5
           },
           "party": "D",
           "chamber": "house",
@@ -14110,7 +14110,7 @@
           },
           "mobile": {
             "x": 150.5,
-            "y": 276.0
+            "y": 311.0
           },
           "party": "R",
           "chamber": "house",
@@ -14137,7 +14137,7 @@
           },
           "mobile": {
             "x": 153.1,
-            "y": 294.0
+            "y": 299.1
           },
           "party": "R",
           "chamber": "house",
@@ -14164,7 +14164,7 @@
           },
           "mobile": {
             "x": 154.6,
-            "y": 286.4
+            "y": 287.9
           },
           "party": "R",
           "chamber": "house",
@@ -14191,7 +14191,7 @@
           },
           "mobile": {
             "x": 159.6,
-            "y": 298.1
+            "y": 295.0
           },
           "party": "R",
           "chamber": "house",
@@ -14218,7 +14218,7 @@
           },
           "mobile": {
             "x": 159.9,
-            "y": 305.8
+            "y": 302.7
           },
           "party": "R",
           "chamber": "house",
@@ -14245,7 +14245,7 @@
           },
           "mobile": {
             "x": 162.3,
-            "y": 290.8
+            "y": 287.7
           },
           "party": "R",
           "chamber": "house",
@@ -14272,7 +14272,7 @@
           },
           "mobile": {
             "x": 164.5,
-            "y": 283.4
+            "y": 309.0
           },
           "party": "R",
           "chamber": "house",
@@ -14299,7 +14299,7 @@
           },
           "mobile": {
             "x": 164.5,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -14326,7 +14326,7 @@
           },
           "mobile": {
             "x": 164.5,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -14353,7 +14353,7 @@
           },
           "mobile": {
             "x": 167.2,
-            "y": 220.7
+            "y": 222.7
           },
           "party": "D",
           "chamber": "house",
@@ -14380,7 +14380,7 @@
           },
           "mobile": {
             "x": 167.7,
-            "y": 296.3
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -14407,7 +14407,7 @@
           },
           "mobile": {
             "x": 168.4,
-            "y": 304.0
+            "y": 285.0
           },
           "party": "R",
           "chamber": "house",
@@ -14434,7 +14434,7 @@
           },
           "mobile": {
             "x": 170.4,
-            "y": 289.1
+            "y": 305.1
           },
           "party": "R",
           "chamber": "house",
@@ -14461,7 +14461,7 @@
           },
           "mobile": {
             "x": 175.1,
-            "y": 298.4
+            "y": 295.9
           },
           "party": "R",
           "chamber": "house",
@@ -14488,7 +14488,7 @@
           },
           "mobile": {
             "x": 176.4,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -14515,7 +14515,7 @@
           },
           "mobile": {
             "x": 180.0,
-            "y": 221.2
+            "y": 223.2
           },
           "party": "D",
           "chamber": "house",
@@ -14542,7 +14542,7 @@
           },
           "mobile": {
             "x": 183.9,
-            "y": 229.9
+            "y": 231.9
           },
           "party": "D",
           "chamber": "house",
@@ -14569,7 +14569,7 @@
           },
           "mobile": {
             "x": 193.6,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -14596,7 +14596,7 @@
           },
           "mobile": {
             "x": 195.7,
-            "y": 162.0
+            "y": 164.0
           },
           "party": "R",
           "chamber": "senate",
@@ -14623,7 +14623,7 @@
           },
           "mobile": {
             "x": 197.1,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -14650,7 +14650,7 @@
           },
           "mobile": {
             "x": 202.5,
-            "y": 288.4
+            "y": 292.4
           },
           "party": "R",
           "chamber": "house",
@@ -14677,7 +14677,7 @@
           },
           "mobile": {
             "x": 214.5,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -14704,7 +14704,7 @@
           },
           "mobile": {
             "x": 222.1,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -14731,7 +14731,7 @@
           },
           "mobile": {
             "x": 226.6,
-            "y": 100.0
+            "y": 102.0
           },
           "party": "D",
           "chamber": "senate",
@@ -14758,7 +14758,7 @@
           },
           "mobile": {
             "x": 228.2,
-            "y": 223.2
+            "y": 225.2
           },
           "party": "D",
           "chamber": "house",
@@ -14785,7 +14785,7 @@
           },
           "mobile": {
             "x": 229.9,
-            "y": 93.0
+            "y": 95.0
           },
           "party": "D",
           "chamber": "senate",
@@ -14812,7 +14812,7 @@
           },
           "mobile": {
             "x": 246.0,
-            "y": 228.0
+            "y": 230.0
           },
           "party": "D",
           "chamber": "house",
@@ -14839,7 +14839,7 @@
           },
           "mobile": {
             "x": 247.3,
-            "y": 220.4
+            "y": 222.4
           },
           "party": "D",
           "chamber": "house",
@@ -14866,7 +14866,7 @@
           },
           "mobile": {
             "x": 273.1,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -14893,7 +14893,7 @@
           },
           "mobile": {
             "x": 317.4,
-            "y": 100.0
+            "y": 102.0
           },
           "party": "D",
           "chamber": "senate",
@@ -14920,7 +14920,7 @@
           },
           "mobile": {
             "x": 328.3,
-            "y": 294.0
+            "y": 298.0
           },
           "party": "R",
           "chamber": "house",
@@ -15034,6 +15034,7 @@
       ],
       "takeaway": "Log(buys) vs. excess return is flat (r = +0.03); 8/29 hyper-traders (27.6%) beat SPY.",
       "chartSubtitle": "Priced stock buys (log X) vs. average excess return (symlog Y)",
+      "mobileChartSubtitle": "Buy count vs. excess",
       "layoutType": "activity-scatter",
       "guides": [
         {
@@ -15057,16 +15058,13 @@
             "y": 214.8
           },
           "label": "S&P 500 (0%)",
-          "mobileLabel": "0%",
+          "mobileLabel": null,
           "desktopLabelPos": {
-            "x": 84.0,
-            "y": 279.4
+            "x": 618.0,
+            "y": 277.4
           },
-          "mobileLabelPos": {
-            "x": 62.0,
-            "y": 204.8
-          },
-          "labelAnchor": "start"
+          "mobileLabelPos": null,
+          "labelAnchor": "middle"
         },
         {
           "id": "b4-200-x",
@@ -18727,7 +18725,7 @@
             "y": 224.0
           },
           "mobile": {
-            "x": 338.0,
+            "x": 340.0,
             "y": 166.0
           },
           "anchor": "end",
@@ -18741,11 +18739,11 @@
           "priority": 1,
           "desktop": {
             "x": 632.0,
-            "y": 312.0
+            "y": 318.0
           },
           "mobile": {
-            "x": 334.0,
-            "y": 248.0
+            "x": 342.0,
+            "y": 288.0
           },
           "anchor": "middle",
           "mobileAnchor": "end"
@@ -18761,8 +18759,8 @@
             "y": 104.0
           },
           "mobile": {
-            "x": 334.0,
-            "y": 82.0
+            "x": 342.0,
+            "y": 114.0
           },
           "anchor": "start",
           "mobileAnchor": "end"
@@ -18774,14 +18772,14 @@
           "mobileText": null,
           "priority": 2,
           "desktop": {
-            "x": 462.0,
-            "y": 344.0
+            "x": 358.0,
+            "y": 406.0
           },
           "mobile": {
             "x": 180.0,
             "y": 274.0
           },
-          "anchor": "end",
+          "anchor": "middle",
           "mobileAnchor": null
         },
         {
@@ -18832,6 +18830,7 @@
       ],
       "takeaway": "Deduplicated medians: Whitehouse -90.0% (34.6% win), Pelosi +4.6% (53.0% win).",
       "chartSubtitle": "Deduplicated median trade (cobalt ring) vs. mean excess (vermilion dot)",
+      "mobileChartSubtitle": "Median trade vs. mean",
       "layoutType": "superstar-anatomy",
       "guides": [
         {
@@ -18962,7 +18961,7 @@
       "laneHeaders": [
         {
           "id": "b5-lh-mar",
-          "text": "Roger Marshall (R-KS) \u00b7 44 buys \u00b7 56.8% win",
+          "text": "Roger Marshall (R-KS) \u00b7 56.8% win",
           "mobileText": "Marshall (57% win)",
           "desktop": {
             "x": 84.0,
@@ -18977,7 +18976,7 @@
         },
         {
           "id": "b5-lh-wh",
-          "text": "Sheldon Whitehouse (D-RI) \u00b7 324 unique buys \u00b7 34.6% win",
+          "text": "Sheldon Whitehouse (D-RI) \u00b7 34.6% win",
           "mobileText": "Whitehouse (35% win)",
           "desktop": {
             "x": 84.0,
@@ -18988,11 +18987,11 @@
             "y": 130.0
           },
           "anchor": "start",
-          "tone": "accent"
+          "tone": "neutral"
         },
         {
           "id": "b5-lh-com",
-          "text": "Barbara Comstock (R-VA) \u00b7 31 buys \u00b7 67.7% win",
+          "text": "Barbara Comstock (R-VA) \u00b7 67.7% win",
           "mobileText": "Comstock (68% win)",
           "desktop": {
             "x": 84.0,
@@ -19007,7 +19006,7 @@
         },
         {
           "id": "b5-lh-pel",
-          "text": "Nancy Pelosi (D-CA) \u00b7 100 unique buys \u00b7 53.0% win",
+          "text": "Nancy Pelosi (D-CA) \u00b7 53.0% win",
           "mobileText": "Pelosi (53% win)",
           "desktop": {
             "x": 84.0,
@@ -19018,7 +19017,7 @@
             "y": 238.0
           },
           "anchor": "start",
-          "tone": "secondary"
+          "tone": "neutral"
         },
         {
           "id": "b5-lh-rest",
@@ -22471,7 +22470,7 @@
         {
           "id": "b5-ann-mar",
           "entityId": "house_rogerw_marshall",
-          "text": "Med +61% -> Mean +565%",
+          "text": "Med +61% \u2192 Mean +565%",
           "mobileText": null,
           "priority": 2,
           "desktop": {
@@ -22488,8 +22487,8 @@
         {
           "id": "b5-ann-wh",
           "entityId": "senate_sheldon_whitehouse",
-          "text": "Med -90% -> Mean +337% (10 NVDA buys)",
-          "mobileText": "Med -90% vs +337%",
+          "text": "Med -90% \u2192 Mean +337.5% (10 NVDA)",
+          "mobileText": "Med -90% vs +337.5%",
           "priority": 1,
           "desktop": {
             "x": 732.0,
@@ -22505,7 +22504,7 @@
         {
           "id": "b5-ann-com",
           "entityId": "house_barbarajhonorable_comstock",
-          "text": "Med +65% -> Mean +228%",
+          "text": "Med +65% \u2192 Mean +228%",
           "mobileText": null,
           "priority": 3,
           "desktop": {
@@ -22522,7 +22521,7 @@
         {
           "id": "b5-ann-pel",
           "entityId": "house_nancy_pelosi",
-          "text": "Med +4.6% -> Mean +109%",
+          "text": "Med +4.6% \u2192 Mean +109%",
           "mobileText": "Med +4.6% vs +109%",
           "priority": 1,
           "desktop": {
@@ -22567,6 +22566,7 @@
       ],
       "takeaway": "Filter, search, toggle weighting, or click any of the 127 lawmakers.",
       "chartSubtitle": "Est. trading volume (log USD) vs. excess return \u00b7 Size = buy count",
+      "mobileChartSubtitle": "Est. volume vs. excess",
       "layoutType": "explorer",
       "guides": [
         {
@@ -26975,8 +26975,8 @@
             "y": 72.0
           },
           "mobile": {
-            "x": 136.0,
-            "y": 56.0
+            "x": 48.0,
+            "y": 44.0
           },
           "anchor": "start",
           "mobileAnchor": "start"
@@ -26992,8 +26992,8 @@
             "y": 104.0
           },
           "mobile": {
-            "x": 336.0,
-            "y": 82.0
+            "x": 342.0,
+            "y": 54.0
           },
           "anchor": "start",
           "mobileAnchor": "end"
@@ -27005,8 +27005,8 @@
           "mobileText": null,
           "priority": 2,
           "desktop": {
-            "x": 736.0,
-            "y": 166.0
+            "x": 612.0,
+            "y": 152.0
           },
           "mobile": {
             "x": 310.0,
@@ -27023,7 +27023,7 @@
           "priority": 2,
           "desktop": {
             "x": 736.0,
-            "y": 322.0
+            "y": 392.0
           },
           "mobile": {
             "x": 310.0,

@@ -181,6 +181,18 @@
           "title": "Chartsubtitle",
           "type": "string"
         },
+        "mobileChartSubtitle": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mobilechartsubtitle"
+        },
         "layoutType": {
           "default": "default",
           "enum": [
