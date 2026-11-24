@@ -61,3 +61,18 @@ The fresh-context Editorial Critic audited `STORYBOARD.md`, `web/public/data/sto
 - Data/layout adjustments: Re-ordered Beat 1 winner grid column-by-column so Marshall, Whitehouse, and Pelosi sit on the outer right column with unobstructed leader lines; removed cobalt color overload on Beat 3 trailing dots; tightened mobile Beat 4 House beeswarm height; unified Beat 6 row headers to primary ink and matched `+337.5%` precision; moved Beat 7 desktop `McCaul` to open lower-right whitespace and mobile `Marshall`/`Whitehouse` cleanly above their marks.
 - Web fixes: Added opaque warm-paper backing strips behind Beat 6 row headers so the `0%` rule breaks cleanly; hid excluded annotations & leader lines when Beat 7 filters are active; added crisp dark focal rings on Beat 1 annotated marks; upgraded Beat 7 weighting button to an explicit `Equal-Wt | $-Wt` segmented toggle.
 - Ratchet decision: `90 > 0` with **0 blockers** → **Committed & tagged `best-essay`**. Proceeding to Polish Round 3 (presentation-only `web/` fixes targeting `>= 92/100`).
+
+### Polish Round 3 (`2026-11-24T23:47:30Z`): `89/100` (0 blockers, 6 polish) — **ROLLED BACK to `best-essay` (`90/100`)**
+- Scores: `legibility: 17`, `hierarchy: 18`, `editorialCraft: 18`, `visualVariety: 19`, `mobileFit: 17`.
+- Why it regressed (-1 pt): Widening the Beat 3 shaded tray left the existing vertical dashed separator sitting inside the box behind "TOP 3 SET ASIDE", and the Beat 2 `Mean -3.7%` dashed line drew underneath the gray swarm dots.
+- Ratchet decision: `89 < 90` → Executed `git reset --hard best-essay` (`9312c8a`) and pivoted cleanly into Polish Round 4.
+
+### Polish Round 4 (`2026-11-24T23:52:30Z`): `91/100` (1 blocker, 4 polish)
+- Scores: `legibility: 17`, `hierarchy: 19`, `editorialCraft: 19`, `visualVariety: 19`, `mobileFit: 17`.
+- Wins: Removed inner dashed line from Beat 3 shaded tray; moved Beat 2 `Mean -3.7%` above swarm dots; added Beat 4 Senate mean-shift (`-16.8% → +9.0%`) & House mean ticks; routed Beat 5 Tuberville leader cleanly left of 200-buy line; added typographic `≥`, `→`, and `S&P\u00A0500` non-breaking space.
+- Single blocker: Mobile Beat 7 right-side `S&P 500` label collided with `$100M–$300M` bubbles. Not promoted yet; fixed immediately in Round 5.
+
+### Polish Round 5 (`2026-11-24T23:56:40Z`): `91/100` (0 blockers, 4 polish, 1 nit) — **PROMOTED (`best-essay`)**
+- Scores: `legibility: 18`, `hierarchy: 18`, `editorialCraft: 19`, `visualVariety: 19`, `mobileFit: 17`.
+- Fixes: Moved mobile Beat 7 `S&P 500` label to open left space (`x = 56`); wrapped Beat 3 desktop `'3 outliers / +228% to +565%'` cleanly inside the shaded tray and removed single-dot leader/ring; added Pelosi focus ring & shifted mobile Pelosi label left; added mobile search input + `>= 28px` touch targets; replaced `"click any circle"` with `"select any circle"`.
+- Ratchet decision: `91 > 90` with **0 blockers** → **Committed & tagged `best-essay`**. Proceeding to final Polish Round 6 targeting `>= 92/100`.

@@ -22,6 +22,13 @@ const EXPLORER_FILTERS: readonly { id: ExplorerFilterId; label: string; mobileLa
   { id: "senate", label: "Senate (19)", mobileLabel: "Senate" },
 ] as const;
 
+function typographic(text: string): string {
+  return text
+    .replaceAll(">=", "≥")
+    .replaceAll("->", "→")
+    .replaceAll("S&P 500", "S&P\u00A0500");
+}
+
 function formatSignedPct(value: number | null | undefined): string {
   if (value === null || value === undefined) {
     return "—";
@@ -118,16 +125,16 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
 
   const oldMeanGuide = beat.guides.find((g) => g.id === "b2-old-mean");
   const newMeanGuide = beat.guides.find((g) => g.id === "b2-new-mean");
-  const subtitleText = isDesktop
-    ? beat.chartSubtitle
-    : (beat.mobileChartSubtitle ?? beat.chartSubtitle);
+  const subtitleText = typographic(
+    isDesktop ? beat.chartSubtitle : (beat.mobileChartSubtitle ?? beat.chartSubtitle),
+  );
   const transitionDuration = auditMode ? 0 : MOTION.durationSec;
 
   return (
     <div
       data-viz-stage="true"
       data-beat-id={beat.id}
-      className="flex h-full w-full flex-col justify-between px-3 py-2.5 sm:px-5 lg:px-10 lg:py-7"
+      className="flex h-full w-full flex-col justify-between px-3 py-2 sm:px-5 lg:px-10 lg:py-7"
       style={{ backgroundColor: PALETTE.paper }}
     >
       {/* Top hairline graphic header */}
@@ -139,7 +146,11 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
       </div>
 
       {/* Main SVG canvas */}
-      <div className="relative flex min-h-0 flex-1 items-center justify-center py-1 lg:py-3">
+      <div
+        className={`relative flex min-h-0 flex-1 items-center justify-center ${
+          isExplorer && !isDesktop ? "py-0" : "py-1 lg:py-3"
+        }`}
+      >
         <svg
           viewBox={`0 0 ${viewBox.width} ${viewBox.height}`}
           preserveAspectRatio="xMidYMid meet"
@@ -147,78 +158,93 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
           aria-label={beat.headline}
           className="h-full max-h-full w-full max-w-full overflow-visible"
         >
-          {/* Beat 2: subtle warm tint bay behind the 3 set-aside outliers */}
+          {/* Beat 2: dashed warm-tinted bay behind the 3 set-aside outliers (replaces inner divider) */}
           {beat.layoutType === "trimmed-drop" && (
             <rect
               aria-hidden="true"
-              x={isDesktop ? 660 : 306}
+              x={isDesktop ? 646 : 292}
               y={isDesktop ? 114 : 98}
-              width={isDesktop ? 110 : 42}
+              width={isDesktop ? 136 : 64}
               height={isDesktop ? 302 : 202}
               rx={4}
               fill={PALETTE.surface}
-              opacity={0.8}
+              fillOpacity={0.85}
+              stroke={PALETTE.rule}
+              strokeWidth={1.25}
+              strokeDasharray="3 4"
             />
           )}
 
           {/* Beat-specific hairline guides */}
           <g aria-hidden="true">
-            {beat.guides.map((guide) => {
-              const start = isDesktop ? guide.desktopStart : guide.mobileStart;
-              const end = isDesktop ? guide.desktopEnd : guide.mobileEnd;
-              const labelPos = isDesktop ? guide.desktopLabelPos : guide.mobileLabelPos;
-              const labelText = isDesktop ? guide.label : guide.mobileLabel;
+            {beat.guides
+              .filter((guide) => guide.id !== "b2-outlier-divider")
+              .map((guide) => {
+                const start = isDesktop ? guide.desktopStart : guide.mobileStart;
+                const end = isDesktop ? guide.desktopEnd : guide.mobileEnd;
+                const rawLabelPos = isDesktop ? guide.desktopLabelPos : guide.mobileLabelPos;
+                const labelPos =
+                  !isDesktop && guide.id === "b6-zero-y" && rawLabelPos
+                    ? { x: 56, y: rawLabelPos.y - 1 }
+                    : rawLabelPos;
+                const labelAnchor =
+                  !isDesktop && guide.id === "b6-zero-y" ? "start" : guide.labelAnchor;
+                const rawLabel = isDesktop
+                  ? guide.label
+                  : guide.id === "b6-zero-y"
+                    ? "S&P\u00A0500"
+                    : guide.mobileLabel;
+                const labelText = rawLabel ? typographic(rawLabel) : null;
 
-              const stroke =
-                guide.style === "zero"
-                  ? PALETTE.ink
-                  : guide.style === "median"
-                    ? PALETTE.secondary
-                    : PALETTE.rule;
-              const strokeWidth = guide.style === "zero" ? 1.5 : guide.style === "median" ? 1.6 : 1;
-              const strokeDasharray =
-                guide.style === "zero" ? undefined : guide.style === "median" ? "5 4" : "3 4";
-              const opacity =
-                guide.style === "zero" ? 0.55 : guide.style === "median" ? 0.85 : 0.8;
+                const stroke =
+                  guide.style === "zero"
+                    ? PALETTE.ink
+                    : guide.style === "median"
+                      ? PALETTE.secondary
+                      : PALETTE.rule;
+                const strokeWidth =
+                  guide.style === "zero" ? 1.5 : guide.style === "median" ? 1.6 : 1;
+                const strokeDasharray =
+                  guide.style === "zero" ? undefined : guide.style === "median" ? "5 4" : "3 4";
+                const opacity =
+                  guide.style === "zero" ? 0.55 : guide.style === "median" ? 0.85 : 0.8;
 
-              return (
-                <g key={guide.id}>
-                  <line
-                    x1={start.x}
-                    y1={start.y}
-                    x2={end.x}
-                    y2={end.y}
-                    stroke={stroke}
-                    strokeWidth={strokeWidth}
-                    strokeDasharray={strokeDasharray}
-                    opacity={opacity}
-                  />
-                  {labelText && labelPos && (
-                    <text
-                      x={labelPos.x}
-                      y={labelPos.y}
-                      textAnchor={guide.labelAnchor}
-                      dominantBaseline="central"
-                      fill={guide.style === "median" ? PALETTE.secondary : PALETTE.inkMuted}
-                      fontFamily="var(--font-mono)"
-                      fontSize={isDesktop ? 11.5 : 12}
-                      fontWeight={guide.style === "zero" || guide.style === "median" ? 600 : 500}
-                      style={{
-                        fontVariantNumeric: "tabular-nums",
-                        paintOrder: "stroke",
-                        stroke: PALETTE.paper,
-                        strokeWidth: 4.5,
-                        strokeLinejoin: "round",
-                      }}
-                    >
-                      {labelText}
-                    </text>
-                  )}
-                </g>
-              );
-            })}
+                return (
+                  <g key={guide.id}>
+                    <line
+                      x1={start.x}
+                      y1={start.y}
+                      x2={end.x}
+                      y2={end.y}
+                      stroke={stroke}
+                      strokeWidth={strokeWidth}
+                      strokeDasharray={strokeDasharray}
+                      opacity={opacity}
+                    />
+                    {labelText && labelPos && (
+                      <text
+                        x={labelPos.x}
+                        y={labelPos.y}
+                        textAnchor={labelAnchor}
+                        dominantBaseline="central"
+                        fill={guide.style === "median" ? PALETTE.secondary : PALETTE.inkMuted}
+                        fontFamily="var(--font-mono)"
+                        fontSize={isDesktop ? 11.5 : 12.5}
+                        fontWeight={guide.style === "zero" || guide.style === "median" ? 600 : 500}
+                        stroke={PALETTE.paper}
+                        strokeWidth={4.5}
+                        strokeLinejoin="round"
+                        paintOrder="stroke"
+                        style={{ fontVariantNumeric: "tabular-nums" }}
+                      >
+                        {labelText}
+                      </text>
+                    )}
+                  </g>
+                );
+              })}
 
-            {/* Beat 2: visual delta bridge showing mean plunging -3.7% -> -14.0% */}
+            {/* Beat 2: visual delta bridge showing mean plunging -3.7% → -14.0% */}
             {beat.layoutType === "trimmed-drop" && oldMeanGuide && newMeanGuide && (
               <g>
                 {(() => {
@@ -248,12 +274,95 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 })()}
               </g>
             )}
+
+            {/* Beat 3: subtle chamber mean ticks + Senate ex-Whitehouse (-16.8%) → full (+9.0%) shift */}
+            {beat.layoutType === "chamber-party" && (
+              <g>
+                {(() => {
+                  const senExX = isDesktop ? 354.5 : 124.7;
+                  const senAllX = isDesktop ? 398.1 : 148.5;
+                  const houseDX = isDesktop ? 373.1 : 134.8;
+                  const houseRX = isDesktop ? 372.8 : 134.7;
+                  const sepY = isDesktop ? 158 : 126;
+                  return (
+                    <>
+                      {/* House D & House R mean ticks */}
+                      <line
+                        x1={houseDX}
+                        x2={houseDX}
+                        y1={isDesktop ? 268 : 216}
+                        y2={isDesktop ? 320 : 244}
+                        stroke={PALETTE.inkMuted}
+                        strokeWidth={1.5}
+                        strokeDasharray="3 3"
+                        opacity={0.7}
+                      />
+                      <line
+                        x1={houseRX}
+                        x2={houseRX}
+                        y1={isDesktop ? 362 : 284}
+                        y2={isDesktop ? 414 : 312}
+                        stroke={PALETTE.inkMuted}
+                        strokeWidth={1.5}
+                        strokeDasharray="3 3"
+                        opacity={0.7}
+                      />
+                      {/* Senate ex-Whitehouse mean tick (-16.8%) & full Senate mean tick (+9.0%) */}
+                      <line
+                        x1={senExX}
+                        x2={senExX}
+                        y1={isDesktop ? 146 : 117}
+                        y2={isDesktop ? 170 : 135}
+                        stroke={PALETTE.secondary}
+                        strokeWidth={2}
+                      />
+                      <line
+                        x1={senAllX}
+                        x2={senAllX}
+                        y1={isDesktop ? 146 : 117}
+                        y2={isDesktop ? 170 : 135}
+                        stroke={PALETTE.accent}
+                        strokeWidth={2}
+                      />
+                      <line
+                        x1={senExX}
+                        x2={senAllX - 5}
+                        y1={sepY}
+                        y2={sepY}
+                        stroke={PALETTE.accent}
+                        strokeWidth={2}
+                      />
+                      <polygon
+                        points={`${senAllX},${sepY} ${senAllX - 6},${sepY - 3.5} ${senAllX - 6},${sepY + 3.5}`}
+                        fill={PALETTE.accent}
+                      />
+                      <text
+                        x={isDesktop ? 410 : 158}
+                        y={sepY}
+                        textAnchor="start"
+                        dominantBaseline="central"
+                        fill={PALETTE.accent}
+                        fontFamily="var(--font-mono)"
+                        fontSize={isDesktop ? 11 : 11.5}
+                        fontWeight={600}
+                        stroke={PALETTE.paper}
+                        strokeWidth={5}
+                        strokeLinejoin="round"
+                        paintOrder="stroke"
+                        style={{ fontVariantNumeric: "tabular-nums" }}
+                      >
+                        {isDesktop ? "Senate avg: -16.8% → +9.0%" : "Sen avg -17% → +9%"}
+                      </text>
+                    </>
+                  );
+                })()}
+              </g>
+            )}
           </g>
 
           {/* Beat 5: Mean vs. Median trade barbell tracks & cobalt median rings */}
           {beat.layoutType === "superstar-anatomy" && (
             <g aria-hidden="true">
-              {/* Compact inline key on both desktop and mobile */}
               {isDesktop ? (
                 <g transform="translate(522, 62)">
                   <circle
@@ -302,18 +411,18 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     dominantBaseline="central"
                     fill={PALETTE.inkMuted}
                     fontFamily="var(--font-mono)"
-                    fontSize={11.5}
+                    fontSize={12}
                   >
                     Median
                   </text>
-                  <circle cx={82} cy={0} r={4.2} fill={PALETTE.accent} />
+                  <circle cx={84} cy={0} r={4.2} fill={PALETTE.accent} />
                   <text
-                    x={91}
+                    x={93}
                     y={0}
                     dominantBaseline="central"
                     fill={PALETTE.inkMuted}
                     fontFamily="var(--font-mono)"
-                    fontSize={11.5}
+                    fontSize={12}
                   >
                     Mean
                   </text>
@@ -376,6 +485,16 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     />
                   );
                 })}
+              {/* Crisp hairline separating the barbell % axis from the ranked 123-lawmaker strip */}
+              <line
+                x1={isDesktop ? 64 : 24}
+                x2={isDesktop ? 736 : 336}
+                y1={isDesktop ? 396 : 301}
+                y2={isDesktop ? 396 : 301}
+                stroke={PALETTE.rule}
+                strokeWidth={1}
+                strokeDasharray="3 3"
+              />
             </g>
           )}
 
@@ -383,7 +502,16 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
           <g aria-hidden="true">
             {beat.laneHeaders.map((lh) => {
               const pos = isDesktop ? lh.desktop : lh.mobile;
-              const text = isDesktop ? lh.text : (lh.mobileText ?? lh.text);
+              const rawText = isDesktop ? lh.text : (lh.mobileText ?? lh.text);
+              const text = typographic(
+                lh.id === "b5-lh-rest"
+                  ? isDesktop
+                    ? "OTHER 123 LAWMAKERS · RANKED LOW TO HIGH"
+                    : "OTHER 123 · RANKED LOW TO HIGH"
+                  : !isDesktop && beat.layoutType === "superstar-anatomy"
+                    ? rawText.replace(" win)", ")")
+                    : rawText,
+              );
               const isSuperstarRow =
                 beat.layoutType === "superstar-anatomy" && lh.id !== "b5-lh-rest";
               const fill = isSuperstarRow
@@ -402,16 +530,22 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   dominantBaseline="central"
                   fill={fill}
                   fontFamily="var(--font-mono)"
-                  fontSize={isDesktop ? 11.5 : 12}
+                  fontSize={
+                    lh.id === "b2-parked-hdr"
+                      ? isDesktop
+                        ? 11
+                        : 11.5
+                      : isDesktop
+                        ? 11.5
+                        : 12
+                  }
                   fontWeight={600}
-                  letterSpacing="0.03em"
-                  style={{
-                    fontVariantNumeric: "tabular-nums",
-                    paintOrder: "stroke",
-                    stroke: PALETTE.paper,
-                    strokeWidth: 5.5,
-                    strokeLinejoin: "round",
-                  }}
+                  letterSpacing={lh.id === "b2-parked-hdr" ? "0.02em" : "0.03em"}
+                  stroke={PALETTE.paper}
+                  strokeWidth={5.5}
+                  strokeLinejoin="round"
+                  paintOrder="stroke"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
                 >
                   {text}
                 </text>
@@ -433,7 +567,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   dominantBaseline="central"
                   fill={PALETTE.inkMuted}
                   fontFamily="var(--font-mono)"
-                  fontSize={isDesktop ? 11.5 : 12}
+                  fontSize={isDesktop ? 11.5 : isExplorer ? 13.5 : 12.5}
                   style={{ fontVariantNumeric: "tabular-nums" }}
                 >
                   {text}
@@ -452,10 +586,10 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 }
                 const annMatchesFilter =
                   !isFilterActive || matchesExplorerFilter(entity, selectedFilter, searchQuery);
-                if (!annMatchesFilter) {
+                if (!annMatchesFilter || ann.id === "b2-ann-parked") {
                   return null;
                 }
-                const ePos =
+                const rawEPos =
                   isExplorer && weightMode === "dollar"
                     ? (isDesktop
                         ? (entity.desktopAlt ?? entity.desktop)
@@ -463,15 +597,57 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     : isDesktop
                       ? entity.desktop
                       : entity.mobile;
-                const aPos = isDesktop ? ann.desktop : ann.mobile;
-                const dx = aPos.x - ePos.x;
-                const dy = aPos.y - ePos.y;
+                const ePos =
+                  !isDesktop && beat.layoutType === "waffle-split"
+                    ? { x: rawEPos.x, y: rawEPos.y + 10 }
+                    : rawEPos;
+                const rawAPos = isDesktop ? ann.desktop : ann.mobile;
+                const aPos =
+                  !isDesktop && ann.id === "b0-ann-marshall"
+                    ? { x: rawAPos.x, y: rawAPos.y - 4 }
+                    : !isDesktop && ann.id === "b2-ann-pelosi"
+                      ? { x: rawAPos.x - 16, y: rawAPos.y }
+                      : isDesktop && ann.id === "b4-ann-tuberville"
+                        ? { x: 356, y: 408 }
+                        : rawAPos;
+
+                // Beat 4 desktop: route Tuberville leader cleanly below swarm left of 200-buy line
+                if (isDesktop && ann.id === "b4-ann-tuberville") {
+                  const startY = ePos.y + entity.radius + 4;
+                  return (
+                    <path
+                      key={`leader-${ann.id}`}
+                      d={`M ${ePos.x} ${startY} L ${ePos.x} 388 L ${aPos.x + 8} ${aPos.y}`}
+                      fill="none"
+                      stroke={PALETTE.inkMuted}
+                      strokeWidth={1}
+                      strokeDasharray="2 2"
+                      opacity={0.55}
+                    />
+                  );
+                }
+
+                // Beat 6 mobile: anchor Marshall/Whitehouse leaders from bottom-center of each label
+                const targetAPos =
+                  !isDesktop && ann.id === "b6-ann-marshall"
+                    ? { x: 104, y: aPos.y + 8 }
+                    : !isDesktop && ann.id === "b6-ann-whitehouse"
+                      ? { x: 278, y: aPos.y + 8 }
+                      : aPos;
+
+                const dx = targetAPos.x - ePos.x;
+                const dy = targetAPos.y - ePos.y;
                 const dist = Math.hypot(dx, dy);
                 if (dist < 1) {
                   return null;
                 }
                 const startPad = (isDesktop ? entity.radius : entity.radius * 0.72) + 4;
-                const endPad = isDesktop ? 12 : 8;
+                const endPad =
+                  !isDesktop && (ann.id === "b6-ann-marshall" || ann.id === "b6-ann-whitehouse")
+                    ? 2
+                    : isDesktop
+                      ? 12
+                      : 8;
                 if (dist <= startPad + endPad) {
                   return null;
                 }
@@ -482,8 +658,8 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     key={`leader-${ann.id}`}
                     x1={ePos.x + ux * startPad}
                     y1={ePos.y + uy * startPad}
-                    x2={aPos.x - ux * endPad}
-                    y2={aPos.y - uy * endPad}
+                    x2={targetAPos.x - ux * endPad}
+                    y2={targetAPos.y - uy * endPad}
                     stroke={PALETTE.inkMuted}
                     strokeWidth={1}
                     strokeDasharray="2 2"
@@ -497,7 +673,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
           {/* 127 Persistent-ID lawmaker marks animated strictly via GPU transform & opacity */}
           <g>
             {beat.entities.map((entity) => {
-              const pos =
+              const rawPos =
                 isExplorer && weightMode === "dollar"
                   ? (isDesktop
                       ? (entity.desktopAlt ?? entity.desktop)
@@ -505,17 +681,27 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   : isDesktop
                     ? entity.desktop
                     : entity.mobile;
+              const pos =
+                !isDesktop && beat.layoutType === "waffle-split"
+                  ? { x: rawPos.x, y: rawPos.y + 10 }
+                  : rawPos;
               const isMatched =
                 !isExplorer || matchesExplorerFilter(entity, selectedFilter, searchQuery);
               const isInspected = isExplorer && inspectedId === entity.id;
               const isFocal = entity.tone !== "neutral";
               const isAnnotated = annotatedEntityIds.has(entity.id);
+              const isParkedOutlier =
+                beat.layoutType === "trimmed-drop" &&
+                entity.id === "house_barbarajhonorable_comstock";
               const showDarkRing =
                 isInspected ||
-                (beat.layoutType === "waffle-split" && isAnnotated) ||
-                (!isFocal && isAnnotated);
+                (!isParkedOutlier &&
+                  ((beat.layoutType === "waffle-split" ||
+                    beat.layoutType === "trimmed-drop" ||
+                    beat.layoutType === "activity-scatter") &&
+                    isAnnotated)) ||
+                (!isFocal && isAnnotated && !isParkedOutlier);
 
-              // Desaturate excluded marks to quiet warm neutral gray when explorer filter is active
               const fill =
                 isFilterActive && !isMatched ? PALETTE.neutralMark : TONE_COLORS[entity.tone];
               const radius = isDesktop ? entity.radius : Math.max(3.2, entity.radius * 0.68);
@@ -588,12 +774,93 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
             })}
           </g>
 
+          {/* Beat 1: Mean (-3.7%) overlay drawn ABOVE dots with arrow & label cleanly below swarm */}
+          {beat.layoutType === "beeswarm-skew" && (
+            <g aria-hidden="true">
+              {(() => {
+                const mx = isDesktop ? 202.2 : 90.5;
+                const yTop = isDesktop ? 390 : 292;
+                const yBot = isDesktop ? 426 : 313;
+                const lx = isDesktop ? 222 : 106;
+                const ly = isDesktop ? 420 : 310;
+                return (
+                  <>
+                    <line
+                      x1={mx}
+                      y1={yTop}
+                      x2={mx}
+                      y2={yBot}
+                      stroke={PALETTE.accent}
+                      strokeWidth={1.8}
+                      strokeDasharray="3 2"
+                    />
+                    <polygon
+                      points={`${mx},${yBot} ${mx - 3.5},${yBot - 6} ${mx + 3.5},${yBot - 6}`}
+                      fill={PALETTE.accent}
+                    />
+                    <line
+                      x1={mx + 3}
+                      y1={ly}
+                      x2={lx - 4}
+                      y2={ly}
+                      stroke={PALETTE.accent}
+                      strokeWidth={1}
+                      opacity={0.75}
+                    />
+                    <text
+                      x={lx}
+                      y={ly}
+                      textAnchor="start"
+                      dominantBaseline="central"
+                      fill={PALETTE.accent}
+                      fontFamily="var(--font-mono)"
+                      fontSize={isDesktop ? 11.5 : 12}
+                      fontWeight={600}
+                      stroke={PALETTE.paper}
+                      strokeWidth={4.5}
+                      strokeLinejoin="round"
+                      paintOrder="stroke"
+                      style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
+                      Mean -3.7%
+                    </text>
+                  </>
+                );
+              })()}
+            </g>
+          )}
+
           {/* Direct priority-filtered annotations checked by Tier A */}
           <g>
             {visibleAnnotations.map((ann) => {
-              const pos = isDesktop ? ann.desktop : ann.mobile;
-              const text = isDesktop ? ann.text : (ann.mobileText ?? ann.text);
-              const anchor = isDesktop ? ann.anchor : (ann.mobileAnchor ?? ann.anchor);
+              const rawPos = isDesktop ? ann.desktop : ann.mobile;
+              const pos =
+                !isDesktop && ann.id === "b0-ann-marshall"
+                  ? { x: rawPos.x, y: rawPos.y - 4 }
+                  : !isDesktop && ann.id === "b2-ann-pelosi"
+                    ? { x: rawPos.x - 16, y: rawPos.y }
+                    : isDesktop && ann.id === "b2-ann-parked"
+                      ? { x: 714, y: 372 }
+                      : isDesktop && ann.id === "b4-ann-tuberville"
+                        ? { x: 356, y: 408 }
+                        : rawPos;
+              const rawText = isDesktop ? ann.text : (ann.mobileText ?? ann.text);
+              const text = typographic(
+                !isDesktop && beat.layoutType === "superstar-anatomy"
+                  ? rawText
+                      .replace("Med ", "")
+                      .replace(" vs ", " → ")
+                      .replace("+337.5%", "+338%")
+                  : rawText,
+              );
+              const anchor =
+                isDesktop && ann.id === "b2-ann-parked"
+                  ? "middle"
+                  : isDesktop && ann.id === "b4-ann-tuberville"
+                    ? "end"
+                    : isDesktop
+                      ? ann.anchor
+                      : (ann.mobileAnchor ?? ann.anchor);
               const entity = entityMap.get(ann.entityId);
               const annMatchesFilter =
                 !isFilterActive ||
@@ -606,6 +873,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 entity && entity.tone !== "neutral" && isPrimary
                   ? PALETTE.ink
                   : PALETTE.inkMuted;
+              const isParkedTwoLine = isDesktop && ann.id === "b2-ann-parked";
               return (
                 <text
                   key={ann.id}
@@ -618,17 +886,28 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   data-priority={ann.priority}
                   fill={fill}
                   fontFamily="var(--font-mono)"
-                  fontSize={isDesktop ? (isPrimary ? 12.5 : 11.5) : 13}
+                  fontSize={
+                    isParkedTwoLine ? 10.5 : isDesktop ? (isPrimary ? 12.5 : 11.5) : 13
+                  }
                   fontWeight={isPrimary ? 600 : 500}
-                  style={{
-                    fontVariantNumeric: "tabular-nums",
-                    paintOrder: "stroke",
-                    stroke: PALETTE.paper,
-                    strokeWidth: 4.5,
-                    strokeLinejoin: "round",
-                  }}
+                  stroke={PALETTE.paper}
+                  strokeWidth={5}
+                  strokeLinejoin="round"
+                  paintOrder="stroke"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
                 >
-                  {text}
+                  {isParkedTwoLine ? (
+                    <>
+                      <tspan x={pos.x} dy="-0.55em">
+                        3 outliers
+                      </tspan>
+                      <tspan x={pos.x} dy="1.3em">
+                        +228% to +565%
+                      </tspan>
+                    </>
+                  ) : (
+                    text
+                  )}
                 </text>
               );
             })}
@@ -640,7 +919,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
       {isExplorer ? (
         <div
           data-viz-interactive="true"
-          className="flex flex-col gap-1.5 border-t border-[#DDD7CC] pt-2 text-xs"
+          className="flex flex-col gap-1 border-t border-[#DDD7CC] pt-1.5 text-xs lg:gap-1.5 lg:pt-2"
         >
           <div className="flex flex-wrap items-center justify-between gap-1.5">
             <div
@@ -657,7 +936,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                     data-interactive-control="filter"
                     aria-pressed={active}
                     onClick={() => setSelectedFilter(flt.id)}
-                    className={`cursor-pointer border px-2 py-0.5 font-mono text-[11px] tabular-nums transition-colors ${
+                    className={`min-h-[28px] cursor-pointer border px-2 py-1 font-mono text-[11px] tabular-nums transition-colors lg:min-h-0 lg:py-0.5 ${
                       active
                         ? "border-[#171614] bg-[#171614] text-[#FAF8F5]"
                         : "border-[#DDD7CC] bg-[#F1EDE6] text-[#171614] hover:border-[#171614]/50"
@@ -669,9 +948,9 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
               })}
             </div>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex w-full items-center gap-1.5 lg:w-auto">
               <div
-                className="inline-flex border border-[#DDD7CC]"
+                className="inline-flex shrink-0 border border-[#DDD7CC]"
                 role="group"
                 aria-label="Return weighting"
               >
@@ -680,7 +959,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   data-interactive-control="weight-equal"
                   aria-pressed={weightMode === "equal"}
                   onClick={() => setWeightMode("equal")}
-                  className={`cursor-pointer px-2 py-0.5 font-mono text-[11px] tabular-nums transition-colors ${
+                  className={`min-h-[28px] cursor-pointer px-2 py-1 font-mono text-[11px] tabular-nums transition-colors lg:min-h-0 lg:py-0.5 ${
                     weightMode === "equal"
                       ? "bg-[#171614] text-[#FAF8F5]"
                       : "bg-[#F1EDE6] text-[#5C5852] hover:text-[#171614]"
@@ -693,7 +972,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                   data-interactive-control="weight-dollar"
                   aria-pressed={weightMode === "dollar"}
                   onClick={() => setWeightMode("dollar")}
-                  className={`cursor-pointer border-l border-[#DDD7CC] px-2 py-0.5 font-mono text-[11px] tabular-nums transition-colors ${
+                  className={`min-h-[28px] cursor-pointer border-l border-[#DDD7CC] px-2 py-1 font-mono text-[11px] tabular-nums transition-colors lg:min-h-0 lg:py-0.5 ${
                     weightMode === "dollar"
                       ? "bg-[#1E5AA8] text-[#FAF8F5]"
                       : "bg-[#F1EDE6] text-[#5C5852] hover:text-[#171614]"
@@ -703,16 +982,14 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
                 </button>
               </div>
 
-              {isDesktop && (
-                <input
-                  type="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Find member or state…"
-                  aria-label="Filter lawmakers by name or state"
-                  className="w-[168px] border border-[#DDD7CC] bg-[#FAF8F5] px-2 py-0.5 font-mono text-[11px] text-[#171614] placeholder:text-[#5C5852] focus:border-[#171614] focus:outline-none"
-                />
-              )}
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={isDesktop ? "Find member or state…" : "Find member…"}
+                aria-label="Filter lawmakers by name or state"
+                className="min-h-[28px] min-w-[110px] flex-1 border border-[#DDD7CC] bg-[#FAF8F5] px-2 py-1 font-mono text-[11px] text-[#171614] placeholder:text-[#5C5852] focus:border-[#171614] focus:outline-none lg:min-h-0 lg:w-[168px] lg:flex-none lg:py-0.5"
+              />
             </div>
           </div>
 
@@ -748,7 +1025,7 @@ export function CongressViz({ story, activeStep, isDesktop }: CongressVizProps) 
         </div>
       ) : (
         <div className="hidden items-center justify-between border-t border-[#DDD7CC] pt-2 text-xs text-[#5C5852] lg:flex">
-          <span className="truncate pr-4">{beat.takeaway}</span>
+          <span className="truncate pr-4">{typographic(beat.takeaway)}</span>
           <span className="shrink-0 font-mono text-[11px] tabular-nums">
             {beat.index + 1} / {story.beats.length}
           </span>

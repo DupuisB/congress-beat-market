@@ -84,8 +84,8 @@ export function ScrollyLayout({ story }: ScrollyLayoutProps) {
         data-active-step={activeStep}
         className="relative mx-auto flex w-full max-w-[1380px] flex-col lg:flex-row-reverse lg:items-start"
       >
-        {/* Single responsive sticky stage: top 48dvh on mobile, right 100dvh split on desktop */}
-        <div className="sticky top-0 z-20 h-[48dvh] w-full border-b border-[#DDD7CC] bg-[#FAF8F5] lg:h-[100dvh] lg:flex-1 lg:border-b-0 lg:border-l">
+        {/* Single responsive sticky stage: top 50dvh on mobile, right 100dvh split on desktop */}
+        <div className="sticky top-0 z-20 h-[50dvh] w-full border-b border-[#DDD7CC] bg-[#FAF8F5] lg:h-[100dvh] lg:flex-1 lg:border-b-0 lg:border-l">
           <CongressViz story={story} activeStep={activeStep} isDesktop={isDesktop} />
         </div>
 
@@ -116,18 +116,21 @@ export function ScrollyLayout({ story }: ScrollyLayoutProps) {
                         {beat.kicker}
                       </p>
                       <h2 className="mt-2 font-serif text-[23px] leading-[1.18] font-semibold tracking-[-0.015em] text-[#171614] lg:text-2xl">
-                        {beat.headline}
+                        {beat.headline.replaceAll("S&P 500", "S&P\u00A0500")}
                       </h2>
                       <p className="mt-3 max-w-[60ch] text-[15px] leading-[1.65] text-[#171614]/90">
-                        {beat.bodySegments.map((segment, segIdx) =>
-                          segment.tone ? (
+                        {beat.bodySegments.map((segment, segIdx) => {
+                          const formatted = segment.text
+                            .replaceAll("S&P 500", "S&P\u00A0500")
+                            .replaceAll("click any circle", "select any circle");
+                          return segment.tone ? (
                             <Highlight key={`${beat.id}-seg-${segIdx}`} tone={segment.tone}>
-                              {segment.text}
+                              {formatted}
                             </Highlight>
                           ) : (
-                            <span key={`${beat.id}-seg-${segIdx}`}>{segment.text}</span>
-                          ),
-                        )}
+                            <span key={`${beat.id}-seg-${segIdx}`}>{formatted}</span>
+                          );
+                        })}
                       </p>
                     </article>
                   </div>
