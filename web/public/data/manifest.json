@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "factory-smoke-fixture",
+  "beatCount": 3,
+  "totalUniqueEntities": 12,
+  "beats": [
+    {
+      "beatId": "beat-01-baseline",
+      "index": 0,
+      "entityCount": 12,
+      "entityIds": [
+        "pt-01",
+        "pt-02",
+        "pt-03",
+        "pt-04",
+        "pt-05",
+        "pt-06",
+        "pt-07",
+        "pt-08",
+        "pt-09",
+        "pt-10",
+        "pt-11",
+        "pt-12"
+      ],
+      "annotationCounts": {
+        "priority1": 2,
+        "priority2": 2,
+        "priority3": 1
+      }
+    },
+    {
+      "beatId": "beat-02-divergence",
+      "index": 1,
+      "entityCount": 12,
+      "entityIds": [
+        "pt-01",
+        "pt-02",
+        "pt-03",
+        "pt-04",
+        "pt-05",
+        "pt-06",
+        "pt-07",
+        "pt-08",
+        "pt-09",
+        "pt-10",
+        "pt-11",
+        "pt-12"
+      ],
+      "annotationCounts": {
+        "priority1": 2,
+        "priority2": 1,
+        "priority3": 2
+      }
+    },
+    {
+      "beatId": "beat-03-outliers",
+      "index": 2,
+      "entityCount": 12,
+      "entityIds": [
+        "pt-01",
+        "pt-02",
+        "pt-03",
+        "pt-04",
+        "pt-05",
+        "pt-06",
+        "pt-07",
+        "pt-08",
+        "pt-09",
+        "pt-10",
+        "pt-11",
+        "pt-12"
+      ],
+      "annotationCounts": {
+        "priority1": 2,
+        "priority2": 2,
+        "priority3": 1
+      }
+    }
+  ]
+}

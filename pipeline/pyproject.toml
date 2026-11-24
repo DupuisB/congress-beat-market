@@ -1,0 +1,25 @@
+[project]
+name = "pudding-pipeline"
+version = "0.1.0"
+description = "Data exploration, fixed-viewBox layout precomputation, and Pydantic contract emission for visual essays."
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=11.0.0",
+    "pydantic>=2.10.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.0",
+    "ty>=0.0.1a1",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ty.environment]
+python-version = "3.12"
