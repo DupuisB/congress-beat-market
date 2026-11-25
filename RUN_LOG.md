@@ -76,3 +76,8 @@ The fresh-context Editorial Critic audited `STORYBOARD.md`, `web/public/data/sto
 - Scores: `legibility: 18`, `hierarchy: 18`, `editorialCraft: 19`, `visualVariety: 19`, `mobileFit: 17`.
 - Fixes: Moved mobile Beat 7 `S&P 500` label to open left space (`x = 56`); wrapped Beat 3 desktop `'3 outliers / +228% to +565%'` cleanly inside the shaded tray and removed single-dot leader/ring; added Pelosi focus ring & shifted mobile Pelosi label left; added mobile search input + `>= 28px` touch targets; replaced `"click any circle"` with `"select any circle"`.
 - Ratchet decision: `91 > 90` with **0 blockers** → **Committed & tagged `best-essay`**. Proceeding to final Polish Round 6 targeting `>= 92/100`.
+
+### Polish Round 6 (`2026-11-25T00:00:50Z`): `88/100` (1 blocker, 5 polish) — **ROLLED BACK to `best-essay` (`91/100`)**
+- Scores: `legibility: 17`, `hierarchy: 18`, `editorialCraft: 18`, `visualVariety: 19`, `mobileFit: 16`.
+- Why it regressed (-3 pts): Shifting the mobile Beat 7 `S&P 500` label upward by `7px` clipped a vermilion circle near the `0%` baseline, and desaturating unfiltered Beat 7 trailing dots created a mismatch with the cobalt prose highlight (`"most lawmakers trail an index fund"`).
+- Ratchet decision: `88 < 91` with 1 blocker → Executed `git reset --hard best-essay` (`9082706`, **91/100**, **0 blockers**). Completed 6/6 ratcheted polish rounds; proceeding to Final Verification & `FINAL_REPORT.md` delivery.

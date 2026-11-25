@@ -1,11 +1,11 @@
 {
   "theme": "Do U.S. Congress members actually beat the market, or do a few outliers create that illusion?",
   "slug": "congress-beat-market",
-  "currentPhase": "phase-3",
+  "currentPhase": "complete",
   "bestScore": 91,
   "bestTag": "best-essay",
   "escapeCount": 2,
-  "polishRound": 5,
-  "status": "in_progress",
-  "updatedAt": "2026-11-24T23:57:00Z"
+  "polishRound": 6,
+  "status": "complete",
+  "updatedAt": "2026-11-25T00:02:00Z"
 }
