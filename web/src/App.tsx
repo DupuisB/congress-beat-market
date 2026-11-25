@@ -24,7 +24,9 @@ export function App() {
 
     async function loadStory(): Promise<void> {
       try {
-        const response = await fetch("/data/story.json", { cache: "no-store" });
+        const response = await fetch(`${import.meta.env.BASE_URL}data/story.json`, {
+          cache: "no-store",
+        });
         if (!response.ok) {
           throw new Error(`Failed to fetch /data/story.json (HTTP ${response.status})`);
         }
